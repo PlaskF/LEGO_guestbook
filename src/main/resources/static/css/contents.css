@@ -1,0 +1,32 @@
+/* 개요 */
+#overview{
+    width: 740px;                
+    height: 500px;          
+    float: left;           
+    
+}
+/* 역사 */
+#history{
+    width: 730px;       
+    height: 455px;
+    float: right;
+    margin-top: 8px;
+}
+/* 놀이방법 */
+#howtoplay{
+    width: 1080px;         
+    height: 100px;
+    float: left;
+}/* 제품군 */
+#item{
+    width: 740px;          
+    height: 400px;
+    float: right;
+    margin-top: 8px;
+    overflow-y: scroll;
+}/* 커뮤니티 */
+#Community{
+    width: 1080px;          
+    height: 500px;
+    text-align: center;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레고</title>
+    <link rel="stylesheet" href="/css/normal.css">
+    <link rel="stylesheet" href="/css/contents.css">
+    <link rel="stylesheet" href="/css/lemotecon.css">
+    <link rel="stylesheet" href="/css/cookie.css">
+    <style>
+        /* 본문 폰트 크기 */
+        .font_size{
+            font-size: xx-large;
+        }
+        /* 본문 이미지 설정 */
+        .i1{
+            float: left;
+            margin-right: 8px;
+            width: 332px;
+            height: auto;
+        }
+        .i2{
+            float: right;
+            margin-left: 8px;
+            width: 332px;
+            height: auto;
+        }
+    </style>
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <script>
+    $(document).ready(function() 
+    {
+      // 쿠키 사용 동의
+      checkCookieConsent()
+      $("#allowBtn").click(function() {
+        allowCookies()
+      })
+      $("#rejectBtn").click(function() {
+        rejectCookies()
+      })
+
+      function setCookie(cookieName, cookieValue, expirationDays) 
+      {
+        var d = new Date()
+        d.setTime(d.getTime() + (expirationDays * 24 * 60 * 60 * 1000))
+        var expires = "expires=" + d.toUTCString()
+        document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/"
+      }
+
+      function allowCookies() 
+      {
+        setCookie("cookieConsent", "true", 365) // 쿠키 허용
+        hideCookieConsent()
+      }
+
+      function rejectCookies() 
+      {
+        setCookie("cookieConsent", "false", 365) // 쿠키 거부
+        hideCookieConsent()
+      }
+
+      function hideCookieConsent() // 쿠키 숨기기
+      {
+        $("#cookieConsent").hide()
+      }
+
+      function checkCookieConsent() 
+      {
+        var cookieConsent = getCookie("cookieConsent")
+
+        if (cookieConsent === "") 
+        {
+          $("#cookieConsent").show()
+        }
+      }
+
+      function getCookie(cookieName) 
+      {
+        var name = cookieName + "="
+        var decodedCookie = decodeURIComponent(document.cookie)
+        var cookieArray = decodedCookie.split(";")
+
+        for (var i = 0; i < cookieArray.length; i++) 
+        {
+          var cookie = cookieArray[i]
+          while (cookie.charAt(0) === " ") 
+          {
+            cookie = cookie.substring(1);
+          }
+          if (cookie.indexOf(name) === 0) 
+          {
+            return cookie.substring(name.length, cookie.length)
+          }
+        }
+        return ""
+      }
+    })
+    // 현재 위치한 링크 페이지의 색을 빨강으로 정의
+    document.addEventListener("DOMContentLoaded", function() {
+        var linkList = document.getElementById("linkList")
+        var links = linkList.getElementsByTagName("a")
+        var currentPageURL = window.location.href
+
+        for (var i = 0; i < links.length; i++) {
+          var link = links[i]
+          if (link.href === currentPageURL) {
+            link.classList.add("current")
+            break; // 현재 페이지와 일치하는 링크를 찾았으면 반복문 종료
+          }
+        }
+      })
+  </script>
+</head>
+<body>
+    <!-- 쿠키 동의 여부 -->
+    <div id="cookieConsent" style="display: none;">
+        <img src="/img/logo2.jpg" alt="Information Icon">
+        <div class="message">
+          이 웹사이트는 쿠키를 사용합니다. 쿠키 사용에 동의하시겠습니까?
+        </div>
+        <button id="allowBtn">동의</button>
+        <button id="rejectBtn">거부</button>
+    </div>
+    <!-- 웹사이트의 내용 -->
+    <div class="container"> 
+        <img class="logo" src="/img/logo1.jpg">
+    </div>
+    <div class="container">
+        <ul class="menu" id="linkList">
+            <li><a href="/templates/layout/Lego_front.html">1.개요</a></li>
+            <li><a href="/templates/layout/history.html">2.역사</a></li>
+            <li><a href="/templates/layout/play.html">3.놀이 방법</a></li>
+            <li><a href="/templates/layout/item.html">4.주요 제품군</a></li>
+            <li><a href="/templates/layout/community.html">5.관련 커뮤니티</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1 class="h1_style">Front</h1>    
+    </div>   
+    <div class="container">
+        <div><img class="i1" src="/img/Lego1.jpg"></div>
+        <div id="overview" class="font_size"><br><br>환영합니다! 혹시 레고는 처음이신가요?</div>
+        <div><img class="i2" src="/img/Lego.jpg"></div>
+        <div id="overview" class="font_size"><br><br>이 사이트는 당신에게 큰 도움을 줄 것입니다!<br>그 전에 간략히 소개를 드려야겠군요.</div>       
+    </div>
+    <div class="container">
+        <div><img class="i1" src="/img/Lego.png"></div>
+        <div id="overview" class="font_size"><br><br>레고는 블록 모양의 장난감입니다.<br>누구나 쉽게 만들어볼 수 있어 건물, 차량, 동물 등을 만들 수 있어요.</div>
+        <div><img class="i2" src="/img/Lego1.png"></div>
+        <div id="overview" class="font_size"><br><br>아이들뿐만 아니라 어른들도 흥미와 재미를 느끼며 즐길 수 있어요.<br>또한 레고 대회에 참여해 전세계의 레고 팬들과 경합하며 자신만의 작품을 선보일 수 있어요.</div>       
+    </div>
+    <div class="container">
+        <div><img class="i1" src="/img/lego3.png"></div>
+        <div id="overview" class="font_size"><br><br>전 세계에서 사랑받는 레고는 계속해서 새로운 디자인과 모델을 출시하고 있어서 항상 새로운 재미와 도전을 경험할 수 있답니다.</div>
+        <div><img class="i2" src="/img/lego2.png"></div>
+        <div id="overview" class="font_size"><br><br>그럼 출발해볼까요?</div>       
+    </div>
+    <div class="container">
+        <div class="footer"><img class="footlogo" src="/img/logo3.webp"></div>
+    </div>
+    <div class="limotecon">
+        <div class="circle"><a href="#">1</a></div>
+        <div class="circle"><a href="/templates/layout/history.html">2</a></div>
+        <div class="circle"><a href="/templates/layout/play.html">3</a></div>
+        <div class="circle"><a href="/templates/layout/item.html">4</a></div>
+        <div class="circle"><a href="/templates/layout/community.html">5</a></div>
+    </div>
+    <div class="button">
+        <a href="#">TOP</a>
+    </div>
+</body>
+</html>

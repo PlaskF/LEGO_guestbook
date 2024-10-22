@@ -1,0 +1,27 @@
+      /* 쿠키 구성 설정 */
+      #cookieConsent {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f0f0f0;
+        padding: 10px;
+        text-align: center;
+        z-index: 9999;  /* 쿠키 창의 z-index 값을 높게 설정 */
+        }
+
+        #cookieConsent .message {
+        display: inline-block;
+        text-align: left;
+        margin-left: 10px;
+        }
+
+        #cookieConsent img {
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        }
+
+        #cookieConsent button {
+        margin-left: 10px;
+        }

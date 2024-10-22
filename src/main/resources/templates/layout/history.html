@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>레고 - 역사</title>
+  <link rel="stylesheet" th:href="@{/css/normal.css}">
+  <link rel="stylesheet" th:href="@{/css/contents.css}">
+  <link rel="stylesheet" th:href="@{/css/lemotecon.css}">
+  <style>
+    /* 폰트 크기 */
+    .font_size {
+      font-size: larger;
+    }
+
+    /* 이미지 설정 */
+    .i1 {
+      float: left;
+      margin-right: 18px;
+      width: 332px;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    .i2 {
+      float: right;
+      margin-left: 18px;
+      width: 332px;
+      height: auto;
+    }
+
+    .i3 {
+      float: right;
+      margin-right: 18px;
+      margin-bottom: 18px;
+      width: 190px;
+      height: auto;
+    }
+
+    #left-button,
+    #right-button {
+      padding: 10px;
+      color: white;
+      background-color: red;
+    }
+  </style>
+  <script th:src="@{/js/jquery-3.7.0.js}"></script>
+  <script>
+    // 현재 위치한 링크 페이지의 색을 빨강으로 정의
+    document.addEventListener("DOMContentLoaded", function () {
+      var linkList = document.getElementById("linkList");
+      var links = linkList.getElementsByTagName("a");
+      var currentPageURL = window.location.href;
+
+      for (var i = 0; i < links.length; i++) {
+        var link = links[i];
+        if (link.href === currentPageURL) {
+          link.classList.add("current");
+          break;
+        }
+      }
+    });
+
+    // 갤러리 슬라이더
+    $(document).ready(function () {
+      var width = $('[data-role="slider"]').attr('data-width');
+      var height = $('[data-role="slider"]').attr('data-height');
+      var count = $('[data-role="slider"] div.slider-item').length;
+
+      $("[data-role='slider']").css({
+        position: 'relative',
+        overflow: 'hidden',
+        width: width,
+        height: height
+      }).find(".slider-container").css({
+        position: 'absolute',
+        width: count * width,
+        overflow: 'hidden'
+      }).find(".slider-item").css({
+        width: width,
+        height: height,
+        float: 'left'
+      });
+
+      var currentPage = 0;
+      var changePage = function () {
+        $("[data-role='slider'] > .slider-container").animate({
+          left: -currentPage * width
+        }, 500);
+      };
+      $("#left-button").click(function () {
+        if (currentPage > 0) {
+          currentPage = currentPage - 1;
+          changePage();
+        }
+      });
+      $("#right-button").click(function () {
+        if (currentPage < count - 1) {
+          currentPage = currentPage + 1;
+          changePage();
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+<div class="container">
+  <img class="logo" th:src="@{/img/logo1.jpg}">
+</div>
+<div class="container">
+  <ul class="menu" id="linkList">
+    <li><a th:href="@{/layout/front}">1.개요</a></li>
+    <li><a th:href="@{/layout/history}">2.역사</a></li>
+    <li><a th:href="@{/layout/play}">3.놀이 방법</a></li>
+    <li><a th:href="@{/layout/item}">4.주요 제품군</a></li>
+    <li><a th:href="@{/layout/community}">5.관련 커뮤니티</a></li>
+  </ul>
+</div>
+<div class="container">
+  <h1 class="h1_style">History</h1>
+</div>
+
+<div class="container">
+  <div><img class="container" th:src="@{/img/LEGO history logo.png}"></div>
+  <div class="font_size">레고는 약 100여년 가까이 장수한 덴마크의 장난감 브랜드입니다. 100년 기업 레고의 발자취를 더듬어가며 레고의 변천사를 간략히 소개시키겠습니다.</div>
+</div>
+
+<div class="container">
+  <div data-role="slider" data-width="1000" data-height="455">
+    <div class="slider-container">
+      <div class="slider-item">
+        <img class="i1" th:src="@{/img/Ole_Kirk_Christiansen.jpeg}">
+        <p class="font_size">레고는 1932년 올레 키르크 크리스티얀센에 의해 만들어졌습니다. 본디 목공소를 운영하던 장인으로서 장난감과는 연이 멀었지만 대공황이 들이닥치며 상황이 달라지게 됩니다.</p>
+        <img class="i2" th:src="@{/img/home--history.jpg}">
+      </div>
+      <div class="slider-item">
+        <img class="i1" th:src="@{/img/Godtfred.jpg}">
+        <p class="font_size">올레의 사후 그의 아들 고트프레드 키르크 크리스티얀센이 회장으로 취임하면서 오늘날 우리가 아는 레고 블럭을 만들기 시작하였고, 1958년에 플라스틱 완구 세트를 출시합니다.</p>
+        <img class="i2" th:src="@{/img/lego town.jpg}">
+      </div>
+      <div class="slider-item">
+        <img class="i1" th:src="@{/img/firstlego.jpg}">
+        <p class="font_size">초창기의 레고는 블록만으로 구성된 조촐한 모습을 보였습니다. 그 결과 바퀴와 피규어가 탄생하였습니다.</p>
+        <img class="i2" th:src="@{/img/Lego_wheels.jpg}">
+      </div>
+      <div class="slider-item">
+        <img class="i1" th:src="@{/img/Kjeld_Kirk_Kristiansen_2018.jpg}">
+        <p class="font_size">1973년 오일쇼크 이후, 켈 키르크 키르스티얀센이 새로운 비즈니스 모델을 제시하며 다양한 테마를 도입했습니다.</p>
+        <img class="i3" th:src="@{/img/castle.png}">
+      </div>
+      <div class="slider-item">
+        <img class="i1" th:src="@{/img/starwars.png}">
+        <p class="font_size">1999년, 레고는 최초의 콜라보 시리즈 '스타워즈'를 출시하였습니다.</p>
+        <img class="i3" th:src="@{/img/starwars3.png}">
+      </div>
+    </div>
+  </div>
+  <button id="left-button">←</button>
+  <button id="right-button">→</button>
+</div>
+
+<div class="container">
+  <div class="footer"><img class="footlogo" th:src="@{/img/logo3.webp}"></div>
+</div>
+
+<div class="limotecon">
+  <div class="circle"><a th:href="@{/layout/front}">1</a></div>
+  <div class="circle"><a th:href="@{/layout/history}">2</a></div>
+  <div class="circle"><a th:href="@{/layout/play}">3</a></div>
+  <div class="circle"><a th:href="@{/layout/item}">4</a></div>
+  <div class="circle"><a th:href="@{/layout/community}">5</a></div>
+</div>
+<div class="button">
+  <a href="#">TOP</a>
+</div>
+</body>
+</html>
