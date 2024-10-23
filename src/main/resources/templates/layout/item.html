@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>레고 - 제품군</title>
-    <link rel="stylesheet" th:href="@{/css/normal.css}">
-    <link rel="stylesheet" th:href="@{/css/contents.css}">
-    <link rel="stylesheet" th:href="@{/css/lemotecon.css}">
+    <link href="../../static/css/normal.css" rel="stylesheet">
+    <link href="../../static/css/contents.css" rel="stylesheet">
+    <link href="../../static/css/lemotecon.css" rel="stylesheet">
     <style>
         /* 폰트 크기 */
         .font_size {
@@ -48,7 +48,7 @@
             outline: none;
         }
     </style>
-    <script th:src="@{/js/jquery-3.7.0.js}"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         // 현재 위치한 링크 페이지의 색을 빨강으로 정의
         document.addEventListener("DOMContentLoaded", function () {
@@ -81,15 +81,15 @@
 </head>
 <body>
 <div class="container">
-    <img class="logo" th:src="@{/img/logo1.jpg}">
+    <img class="logo" src="../../static/img/logo1.jpg">
 </div>
 <div class="container">
     <ul class="menu" id="linkList">
-        <li><a th:href="@{/layout/front}">1.개요</a></li>
-        <li><a th:href="@{/layout/history}">2.역사</a></li>
-        <li><a th:href="@{/layout/play}">3.놀이 방법</a></li>
-        <li><a th:href="@{/layout/item}">4.주요 제품군</a></li>
-        <li><a th:href="@{/layout/community}">5.관련 커뮤니티</a></li>
+        <li><a href="../../templates/layout/front.html">1.개요</a></li>
+        <li><a href="../../templates/layout/history.html">2.역사</a></li>
+        <li><a href="../../templates/layout/play.html">3.놀이 방법</a></li>
+        <li><a href="../../templates/layout/item.html">4.주요 제품군</a></li>
+        <li><a href="../../templates/layout/community.html">5.관련 커뮤니티</a></li>
     </ul>
 </div>
 <div class="container">
@@ -104,46 +104,46 @@
 </div>
 
 <div class="container">
-    <div><a th:href="https://www.lego.com/ko-kr/themes/classic" target="_blank"><img class="i1" th:src="@{/img/Classic.webp}"></a></div>
+    <div><a href="https://www.lego.com/ko-kr/themes/classic" target="_blank"><img class="i1" src="../../static/img/Classic.webp"></a></div>
     <div id="item" class="font_size">
         다양한 색상과 모양의 블록을 제공하여 자신만의 창작물을 만들 수 있는 제품군입니다. 이 제품군은 블록을 조립하는 방법을 배우기에 좋은 제품군입니다. <br>
-        <a th:href="https://www.lego.com/ko-kr/product/lego-medium-creative-brick-box-10696" target="_blank"><img class="i1" th:src="@{/img/Classic1.webp}"></a>
-        <a th:href="https://www.lego.com/ko-kr/product/lego-large-creative-brick-box-10698" target="_blank"><img class="i1" th:src="@{/img/Classic2.webp}"></a>
-        <a th:href="https://www.lego.com/ko-kr/product/lots-of-bricks-11030" target="_blank"><img class="i1" th:src="@{/img/Classic3.webp}"></a>
-        <a th:href="https://www.lego.com/ko-kr/product/build-together-11020" target="_blank"><img class="i1" th:src="@{/img/Classic4.webp}"></a>
+        <a href="https://www.lego.com/ko-kr/product/lego-medium-creative-brick-box-10696" target="_blank"><img class="i1" src="../../static/img/Classic1.webp"></a>
+        <a href="https://www.lego.com/ko-kr/product/lego-large-creative-brick-box-10698" target="_blank"><img class="i1" src="../../static/img/Classic2.webp"></a>
+        <a href="https://www.lego.com/ko-kr/product/lots-of-bricks-11030" target="_blank"><img class="i1" src="../../static/img/Classic3.webp"></a>
+        <a href="https://www.lego.com/ko-kr/product/build-together-11020" target="_blank"><img class="i1" src="../../static/img/Classic4.webp"></a>
     </div>
 </div>
 
 <div class="container">
-    <div><a th:href="https://www.lego.com/ko-kr/themes/city" target="_blank"><img class="i1" th:src="@{/img/City.webp}"></a></div>
+    <div><a href="https://www.lego.com/ko-kr/themes/city" target="_blank"><img class="i1" src="../../static/img/City.webp"></a></div>
     <div id="item" class="font_size">
         1978년에 출시된 이래로 인기를 유지하고 있는 대표적인 제품군 중 하나입니다. 도시를 구성하는 다양한 블록과 미니피규어를 활용하여 창의적인 상상력을 자극합니다. <br>
-        <a th:href="https://www.lego.com/ko-kr/product/express-passenger-train-60337" target="_blank"><img class="i1" th:src="@{/img/City1.webp}"></a>
-        <a th:href="https://www.lego.com/ko-kr/product/police-station-60316" target="_blank"><img class="i1" th:src="@{/img/City2.webp}"></a>
-        <a th:href="https://www.lego.com/ko-kr/product/hospital-60330" target="_blank"><img class="i1" th:src="@{/img/City4.webp}"></a>
+        <a href="https://www.lego.com/ko-kr/product/express-passenger-train-60337" target="_blank"><img class="i1" src="../../static/img/City1.webp"></a>
+        <a href="https://www.lego.com/ko-kr/product/police-station-60316" target="_blank"><img class="i1" src="../../static/img/City2.webp"></a>
+        <a href="https://www.lego.com/ko-kr/product/hospital-60330" target="_blank"><img class="i1" src="../../static/img/City4.webp"></a>
     </div>
 </div>
 
 <div class="container">
-    <div><a th:href="https://www.lego.com/ko-kr/themes/technic" target="_blank"><img class="i1" th:src="@{/img/Technic.svg}"></a></div>
+    <div><a href="https://www.lego.com/ko-kr/themes/technic" target="_blank"><img class="i1" src="../../static/img/Technic.svg"></a></div>
     <div id="item" class="font_size">
         1977년에 처음 출시된 이래로, 더욱 복잡한 메카닉과 로봇을 만들 수 있게 해주는 제품군으로, 테크니컬 블록과 기어 등의 특수 블록을 활용해 창의적인 작품을 만들 수 있습니다. <br>
-        <a th:href="https://www.lego.com/ko-kr/product/ferrari-daytona-sp3-42143" target="_blank"><img class="i1" th:src="@{/img/Technic1.webp}"></a>
-        <a th:href="https://www.lego.com/ko-kr/product/2022-ford-gt-42154" target="_blank"><img class="i1" th:src="@{/img/Technic2.webp}"></a>
+        <a href="https://www.lego.com/ko-kr/product/ferrari-daytona-sp3-42143" target="_blank"><img class="i1" src="../../static/img/Technic1.webp"></a>
+        <a href="https://www.lego.com/ko-kr/product/2022-ford-gt-42154" target="_blank"><img class="i1" src="../../static/img/Technic2.webp"></a>
     </div>
 </div>
 
 <div class="container">
-    <div><a th:href="https://www.lego.com/ko-kr/themes/creator-3-in-1" target="_blank"><img class="i1" th:src="@{/img/Creator.svg}"></a></div>
+    <div><a href="https://www.lego.com/ko-kr/themes/creator-3-in-1" target="_blank"><img class="i1" src="../../static/img/Creator.svg"></a></div>
     <div id="item" class="font_size">
         블록을 사용하여 다양한 모델을 만들 수 있는 클래식한 레고 제품군입니다. 차, 비행기, 동물 등 다양한 모델을 만들 수 있으며, 초보자들이 블록을 사용하는 기초적인 기술을 배울 수 있습니다. <br>
-        <a th:href="https://www.lego.com/ko-kr/product/cozy-house-31139" target="_blank"><img class="i1" th:src="@{/img/Creator1.webp}"></a>
-        <a th:href="https://www.lego.com/ko-kr/product/pirate-ship-31109" target="_blank"><img class="i1" th:src="@{/img/Creator2.webp}"></a>
+        <a href="https://www.lego.com/ko-kr/product/cozy-house-31139" target="_blank"><img class="i1" src="../../static/img/Creator1.webp"></a>
+        <a href="https://www.lego.com/ko-kr/product/pirate-ship-31109" target="_blank"><img class="i1" src="../../static/img/Creator2.webp"></a>
     </div>
 </div>
 
 <div class="container"><br>
-    <div><a th:href="https://www.lego.com/ko-kr/themes" target="_blank"><img class="i1" th:src="@{/img/LEGO item.jpg}"></a></div>
+    <div><a href="https://www.lego.com/ko-kr/themes" target="_blank"><img class="i1" src="../../static/img/LEGO item.jpg"></a></div>
     <div id="history" class="font_size"><br>그 외에도 수많은 제품군들이 존재합니다. 찾고 싶은 제품이 있다면 검색해 보세요!
         <form id="searchForm">
             <input type="text" id="searchInput" placeholder="레고 제품 검색">
@@ -153,15 +153,15 @@
 </div>
 
 <div class="container">
-    <div class="footer"><img class="footlogo" th:src="@{/img/logo3.webp}"></div>
+    <div class="footer"><img class="footlogo" src="../../static/img/logo3.webp"></div>
 </div>
 
 <div class="limotecon">
-    <div class="circle"><a th:href="@{/layout/front}">1</a></div>
-    <div class="circle"><a th:href="@{/layout/history}">2</a></div>
-    <div class="circle"><a th:href="@{/layout/play}">3</a></div>
-    <div class="circle"><a th:href="@{/layout/item}">4</a></div>
-    <div class="circle"><a th:href="@{/layout/community}">5</a></div>
+    <div class="circle"><a href="../../templates/layout/front.html">1</a></div>
+    <div class="circle"><a href="../../templates/layout/history.html">2</a></div>
+    <div class="circle"><a href="../../templates/layout/play.html">3</a></div>
+    <div class="circle"><a href="#">4</a></div>
+    <div class="circle"><a href="../../templates/layout/community.html">5</a></div>
 </div>
 <div class="button">
     <a href="#">TOP</a>

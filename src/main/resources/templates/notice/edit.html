@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 수정</title>
+    <!-- CSS 파일 적용 -->
+    <link rel="stylesheet" th:href="@{/css/notice.css}">
+</head>
+<body>
+<div class="notice-container">
+    <h1 class="notice-title">공지사항 수정</h1>
+
+    <!-- 공지사항 수정 폼 -->
+    <form th:action="@{/notice/edit/{id}(id=${noticeDTO.id})}" th:object="${noticeDTO}" method="post" class="notice-form">
+
+        <!-- 제목 입력 필드 -->
+        <label for="title">제목:</label>
+        <input type="text" id="title" th:field="*{title}" required>
+
+        <!-- 내용 입력 필드 -->
+        <label for="content">내용:</label>
+        <textarea id="content" th:field="*{content}" rows="10" required></textarea>
+
+        <!-- 작성자 입력 필드 -->
+        <label for="author">작성자:</label>
+        <input type="text" id="author" th:field="*{author}" required>
+
+        <!-- 폼 제출 및 취소 버튼 -->
+        <div class="notice-actions">
+            <button type="submit">수정 완료</button>
+            <a th:href="@{/notice/view/{id}(id=${noticeDTO.id})}" class="btn">취소</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
