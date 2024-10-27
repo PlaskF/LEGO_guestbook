@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface BoardService {
     Long register(BoardDTO dto);
-    List<BoardDTO> getList();
-    BoardDTO get(Long id);
+    PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+    BoardDTO get(Long bno);
     void modify(BoardDTO dto);
-    void remove(Long id);
-    PageResultDTO<BoardDTO, Board> search(PageRequestDTO requestDTO);
+    void remove(Long bno);
+//    PageResultDTO<BoardDTO, Board> search(PageRequestDTO requestDTO);
 }

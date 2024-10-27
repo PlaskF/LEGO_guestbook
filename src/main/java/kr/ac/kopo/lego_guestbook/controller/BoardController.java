@@ -19,45 +19,40 @@ public class BoardController {
     }
 
     @GetMapping("/list")
-    public String list(PageRequestDTO pageRequestDTO, Model model) {
-        model.addAttribute("result", boardService.search(pageRequestDTO));
-        return "notice/list";
+    public void list(PageRequestDTO pageRequestDTO, Model model) {
+        model.addAttribute("result", boardService.getList(pageRequestDTO));
     }
 
     @GetMapping("/register")
-    public String register() {
-        return "notice/register";
+    public void register() {
     }
 
     @PostMapping("/register")
-    public String registerPost(BoardDTO dto) {
-        // dto에 writer가 null이 아닌지 확인
-        if (dto.getWriter() == null || dto.getWriter().isEmpty()) {
-            throw new IllegalArgumentException("작성자 정보가 누락되었습니다.");
-        }
+    public String registerPost(BoardDTO dto, RedirectAttributes redirectAttributes) {
+        Long bno = boardService.register(dto);
 
-        boardService.register(dto);
+        redirectAttributes.addFlashAttribute("msg", bno);
+
         return "redirect:/notice/list";
     }
 
-    @GetMapping("/read")
-    public String read(@RequestParam Long bno, Model model) {
-        model.addAttribute("dto", boardService.get(bno));
-        return "notice/read";
-    }
-
-    @GetMapping("/modify")
-    public String modifyForm(@RequestParam Long bno, Model model) {
-        // 수정할 게시물을 가져와서 모델에 추가
+    @GetMapping({"/read", "/modify"})
+    public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long bno, Model model) {
         BoardDTO boardDTO = boardService.get(bno);
         model.addAttribute("dto", boardDTO);
-        return "notice/modify"; // 수정 폼 페이지로 이동
     }
 
     @PostMapping("/modify")
-    public String modify(BoardDTO dto) {
+    public String modify(BoardDTO dto, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, RedirectAttributes redirectAttributes) {
+
         boardService.modify(dto);
-        return "redirect:/notice/list";
+
+        redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
+        redirectAttributes.addAttribute("type", pageRequestDTO.getType());
+        redirectAttributes.addAttribute("keyword", pageRequestDTO.getKeyword());
+        redirectAttributes.addAttribute("bno", dto.getBno());
+
+        return "redirect:/notice/read";
     }
 
     @PostMapping("/remove")

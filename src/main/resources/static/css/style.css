@@ -1,0 +1,105 @@
+/* 레고 테마 색상 */
+:root {
+    --lego-red: #d62828;
+    --lego-yellow: #f77f00;
+    --lego-blue: #003049;
+    --lego-green: #80b918;
+    --lego-gray: #eae2b7;
+}
+
+/* 전체 레이아웃 */
+body {
+    background-color: var(--lego-gray);
+    font-family: Arial, sans-serif;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+}
+
+/* 제목 스타일 */
+h1 {
+    color: var(--lego-red);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* 테이블 스타일 */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background-color: white;
+}
+
+.table th {
+    background-color: var(--lego-blue);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--lego-gray);
+}
+
+.table tr:hover {
+    background-color: var(--lego-yellow);
+}
+
+/* 페이징 버튼 */
+.pagination .page-item .page-link {
+    color: var(--lego-blue);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    margin: 0 5px;
+    font-weight: bold;
+    background-color: var(--lego-yellow);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--lego-green);
+    color: white;
+}
+
+/* 버튼 스타일 */
+.btn-outline-primary {
+    background-color: var(--lego-red);
+    color: white;
+    border: none;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--lego-yellow);
+    color: var(--lego-blue);
+}
+
+/* 검색 폼 스타일 */
+.input-group .form-select,
+.input-group .form-control {
+    border-radius: 0;
+    margin-right: 5px;
+}
+
+/* 레고 블록 스타일 요소 */
+.lego-block {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: var(--lego-yellow);
+    /*border-radius: 5px;*/
+    margin: 0 2px;
+}

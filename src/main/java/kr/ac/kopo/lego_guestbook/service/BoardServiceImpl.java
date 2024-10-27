@@ -8,6 +8,7 @@ import kr.ac.kopo.lego_guestbook.repository.BoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -25,20 +26,40 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Long register(BoardDTO dto) {
-        if (dto.getWriter() == null || dto.getWriter().trim().isEmpty()) {
-            throw new IllegalArgumentException("작성자는 필수 입력 사항입니다.");
-        }
-
+//        if (dto.getWriter() == null || dto.getWriter().trim().isEmpty()) {
+//            throw new IllegalArgumentException("작성자는 필수 입력 사항입니다.");
+//        }
+//
+//        Board board = dtoToEntity(dto);
+//        boardRepository.save(board);
+//        return board.getBno();
         Board board = dtoToEntity(dto);
         boardRepository.save(board);
+
         return board.getBno();
     }
 
 
     @Override
-    public List<BoardDTO> getList() {
-        return List.of();
+    public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
+        Function<Object[], BoardDTO> fn = (en -> entityToDto((Board) en[0]));
+        Page<Object[]> result = boardRepository.searchPage(pageRequestDTO.getType(), pageRequestDTO.getKeyword(), pageRequestDTO.getPageable(Sort.by("bno").descending()));
+        return new PageResultDTO<>(result, fn);
     }
+
+//    @Override
+//    public PageResultDTO<BoardDTO, Board> search(PageRequestDTO requestDTO) {
+//        Pageable pageable = requestDTO.getPageable(Sort.by("bno").descending());
+//
+//        String[] types = requestDTO.getType() != null ? requestDTO.getType().split("") : new String[0];
+//        String keyword = requestDTO.getKeyword() != null ? requestDTO.getKeyword() : "";
+//
+//        Page<Board> result = boardRepository.searchAll(types, keyword, pageable);
+//
+//        Function<Board, BoardDTO> fn = (entity -> entityToDto(entity));
+//
+//        return new PageResultDTO<>(result, fn);
+//    }
 
     @Override
     public BoardDTO get(Long bno) {
@@ -60,26 +81,6 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void remove(Long bno) {
         boardRepository.deleteById(bno);
-    }
-
-    @Override
-    public PageResultDTO<BoardDTO, Board> search(PageRequestDTO requestDTO) {
-        // 요청된 페이지가 1보다 작을 경우 기본값 설정
-        int page = requestDTO.getPage() > 0 ? requestDTO.getPage() - 1 : 0;
-        int size = requestDTO.getSize() > 0 ? requestDTO.getSize() : 10; // 기본 사이즈 설정
-
-        Pageable pageable = PageRequest.of(page, size);
-        String[] types = requestDTO.getType() != null ? requestDTO.getType().split("") : new String[0];
-        String keyword = requestDTO.getKeyword() != null ? requestDTO.getKeyword() : "";
-
-        // 레포지토리의 검색 메서드 호출
-        Page<Board> result = boardRepository.searchAll(types, keyword, pageable);
-
-        // 검색 결과를 DTO로 변환하는 함수
-        Function<Board, BoardDTO> fn = (entity -> entityToDto(entity));
-
-        // 검색 결과와 변환 함수로 PageResultDTO 생성
-        return new PageResultDTO<>(result, fn);
     }
 
     private Board dtoToEntity(BoardDTO dto) {
