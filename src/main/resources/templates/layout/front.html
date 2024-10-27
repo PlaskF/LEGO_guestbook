@@ -29,73 +29,6 @@
     </style>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
-        // $(document).ready(function()
-        // {
-        //     // 쿠키 사용 동의
-        //     checkCookieConsent()
-        //     $("#allowBtn").click(function() {
-        //         allowCookies()
-        //     })
-        //     $("#rejectBtn").click(function() {
-        //         rejectCookies()
-        //     })
-        //
-        //     function setCookie(cookieName, cookieValue, expirationDays)
-        //     {
-        //         var d = new Date()
-        //         d.setTime(d.getTime() + (expirationDays * 24 * 60 * 60 * 1000))
-        //         var expires = "expires=" + d.toUTCString()
-        //         document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/"
-        //     }
-        //
-        //     function allowCookies()
-        //     {
-        //         setCookie("cookieConsent", "true", 365) // 쿠키 허용
-        //         hideCookieConsent()
-        //     }
-        //
-        //     function rejectCookies()
-        //     {
-        //         setCookie("cookieConsent", "false", 365) // 쿠키 거부
-        //         hideCookieConsent()
-        //     }
-        //
-        //     function hideCookieConsent() // 쿠키 숨기기
-        //     {
-        //         $("#cookieConsent").hide()
-        //     }
-        //
-        //     function checkCookieConsent()
-        //     {
-        //         var cookieConsent = getCookie("cookieConsent")
-        //
-        //         if (cookieConsent === "")
-        //         {
-        //             $("#cookieConsent").show()
-        //         }
-        //     }
-        //
-        //     function getCookie(cookieName)
-        //     {
-        //         var name = cookieName + "="
-        //         var decodedCookie = decodeURIComponent(document.cookie)
-        //         var cookieArray = decodedCookie.split(";")
-        //
-        //         for (var i = 0; i < cookieArray.length; i++)
-        //         {
-        //             var cookie = cookieArray[i]
-        //             while (cookie.charAt(0) === " ")
-        //             {
-        //                 cookie = cookie.substring(1);
-        //             }
-        //             if (cookie.indexOf(name) === 0)
-        //             {
-        //                 return cookie.substring(name.length, cookie.length)
-        //             }
-        //         }
-        //         return ""
-        //     }
-        // })
         // 현재 위치한 링크 페이지의 색을 빨강으로 정의
         document.addEventListener("DOMContentLoaded", function() {
             var linkList = document.getElementById("linkList")
@@ -113,14 +46,6 @@
     </script>
 </head>
 <body>
-<!--    <div id="cookieConsent" style="display: none;">-->
-<!--        <img th:src="@{/img/logo2.jpg}" alt="Information Icon">-->
-<!--        <div class="message">-->
-<!--            이 웹사이트는 쿠키를 사용합니다. 쿠키 사용에 동의하시겠습니까?-->
-<!--        </div>-->
-<!--        <button id="allowBtn">동의</button>-->
-<!--        <button id="rejectBtn">거부</button>-->
-<!--    </div>-->
     <div class="container">
         <img class="logo" src="../../static/img/logo1.jpg">
     </div>
