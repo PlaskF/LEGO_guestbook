@@ -1,6 +1,5 @@
 package kr.ac.kopo.lego_guestbook.repository.search;
 
-import kr.ac.kopo.lego_guestbook.entity.Board;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -5,9 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>레고 - 놀이방법</title>
-  <link href="../../static/css/normal.css" rel="stylesheet">
-  <link href="../../static/css/contents.css" rel="stylesheet">
-  <link href="../../static/css/lemotecon.css" rel="stylesheet">
+  <link th:href="@{/css/normal.css}" rel="stylesheet">
+  <link th:href="@{/css/contents.css}" rel="stylesheet">
+  <link th:href="@{/css/lemotecon.css}" rel="stylesheet">
   <style>
     /* 폰트 크기 */
     .font_size {
@@ -52,74 +52,74 @@
   </script>
 </head>
 <body>
-<div class="container">
-  <img class="logo" src="../../static/img/logo1.jpg">
-</div>
-<div class="container">
-  <ul class="menu" id="linkList">
-    <li><a href="../../templates/layout/front.html">1.개요</a></li>
-    <li><a href="../../templates/layout/history.html">2.역사</a></li>
-    <li><a href="../../templates/layout/play.html">3.놀이 방법</a></li>
-    <li><a href="../../templates/layout/item.html">4.주요 제품군</a></li>
-    <li><a href="../../templates/layout/community.html">5.관련 커뮤니티</a></li>
-  </ul>
-</div>
-<div class="container">
-  <h1 class="h1_style">How to Play</h1>
-</div>
+    <div class="container">
+      <img class="logo" th:src="@{/img/logo1.jpg}">
+    </div>
+    <div class="container">
+      <ul class="menu" id="linkList">
+        <li><a th:href="@{/layout/front}">1.개요</a></li>
+        <li><a th:href="@{/layout/history}">2.역사</a></li>
+        <li><a th:href="@{/layout/play}">3.놀이 방법</a></li>
+        <li><a th:href="@{/layout/item}">4.주요 제품군</a></li>
+        <li><a th:href="@{/notice/list}">5.커뮤니티</a></li>
+      </ul>
+    </div>
+    <div class="container">
+      <h1 class="h1_style">How to Play</h1>
+    </div>
 
-<div class="container">
-  <div><img class="container" src="../../static/img/LEGO play logo.jpg"></div>
-  <div class="font_size">레고는 창의적인 놀이와 상상력을 자극하는 대표적인 장난감 중 하나입니다. 레고 홈페이지에서는 레고를 가지고 노는 방법에 대한 다양한 아이디어와 가이드가 제공됩니다.</div>
-</div>
+    <div class="container">
+      <div><img class="container" th:src="@{/img/LEGO play logo.jpg}"></div>
+      <div class="font_size">레고는 창의적인 놀이와 상상력을 자극하는 대표적인 장난감 중 하나입니다. 레고 홈페이지에서는 레고를 가지고 노는 방법에 대한 다양한 아이디어와 가이드가 제공됩니다.</div>
+    </div>
 
-<div class="container">
-  <div>
-    <img class="frame" src="../../static/img/making_LEGO2.webp">
-    <img class="frame" src="../../static/img/making_LEGO.webp">
-    <img class="frame" src="../../static/img/making_LEGO3.jpg">
-  </div>
-  <div class="font_size font_hidden">.<br></div>
-  <div class="font_size">먼저, 레고 홈페이지에서는 레고 브릭과 미니피규어를 사용하여 다양한 모델을 만드는 방법에 대한 가이드가 제공됩니다.</div>
-</div>
+    <div class="container">
+      <div>
+        <img class="frame" th:src="@{/img/making_LEGO2.webp}">
+        <img class="frame" th:src="@{/img/making_LEGO.webp}">
+        <img class="frame" th:src="@{/img/making_LEGO3.jpg}">
+      </div>
+      <div class="font_size font_hidden">.<br></div>
+      <div class="font_size">먼저, 레고 홈페이지에서는 레고 브릭과 미니피규어를 사용하여 다양한 모델을 만드는 방법에 대한 가이드가 제공됩니다.</div>
+    </div>
 
-<div class="container">
-  <div>
-    <img class="frame" src="../../static/img/play.jpg">
-    <img class="frame" src="../../static/img/play2.jpeg">
-    <img class="frame" src="../../static/img/play3.jpeg">
-  </div>
-  <div class="font_size font_hidden">.<br>.<br></div>
-  <div class="font_size">다양한 테마와 난이도에 따라서 모델을 만들어볼 수 있으며, 새로운 아이디어와 디자인을 만들어내는 것도 가능합니다.</div>
-</div>
+    <div class="container">
+      <div>
+        <img class="frame" th:src="@{/img/play.jpg}">
+        <img class="frame" th:src="@{/img/play2.jpeg}">
+        <img class="frame" th:src="@{/img/play3.jpeg}">
+      </div>
+      <div class="font_size font_hidden">.<br>.<br></div>
+      <div class="font_size">다양한 테마와 난이도에 따라서 모델을 만들어볼 수 있으며, 새로운 아이디어와 디자인을 만들어내는 것도 가능합니다.</div>
+    </div>
 
-<div class="container">
-  <div>
-    <img class="noframe" src="../../static/img/Lego goh.jpg">
-    <img class="frame" src="../../static/img/Jazz.jpeg">
-    <img class="frame" src="../../static/img/Flower_bouquet.jpeg">
-  </div>
-  <div class="font_size">또한 레고를 가지고 다양한 예술 작품을 만드는 방법도 제공됩니다. 예를 들어, 레고 아티스트들이 만든 다양한 작품을 감상하고, 그들의 작품에서 영감을 받아 자신만의 작품을 만들어볼 수 있습니다.</div>
-</div>
+    <div class="container">
+      <div>
+        <img class="noframe" th:src="@{/img/Lego goh.jpg}">
+        <img class="frame" th:src="@{/img/Jazz.jpeg}">
+        <img class="frame" th:src="@{/img/Flower_bouquet.jpeg}">
+      </div>
+      <div class="font_size">또한 레고를 가지고 다양한 예술 작품을 만드는 방법도 제공됩니다. 예를 들어, 레고 아티스트들이 만든 다양한 작품을 감상하고, 그들의 작품에서 영감을 받아 자신만의 작품을 만들어볼 수 있습니다.</div>
+    </div>
 
-<div class="container">
-  <div><img class="frame" src="../../static/img/Lego bricks.jpg"></div>
-  <div class="font_size">이렇게 다양한 방법으로 레고를 가지고 놀이와 교육적인 경험을 즐길 수 있습니다. 레고 홈페이지에서는 이외에도 다양한 아이디어와 가이드가 제공되므로, 더 많은 새로운 방법을 찾아보시길 추천합니다.</div>
-</div>
+    <div class="container">
+      <div><img class="frame" th:src="@{/img/Lego bricks.jpg}"></div>
+      <div class="font_size">이렇게 다양한 방법으로 레고를 가지고 놀이와 교육적인 경험을 즐길 수 있습니다. 레고 홈페이지에서는 이외에도 다양한 아이디어와 가이드가 제공되므로, 더 많은 새로운 방법을 찾아보시길 추천합니다.</div>
+    </div>
 
-<div class="container">
-  <div class="footer"><img class="footlogo" src="../../static/img/logo3.webp"></div>
-</div>
+    <div class="container">
+      <div class="footer"><img class="footlogo" th:src="@{/img/logo3.webp}"></div>
+    </div>
 
-<div class="limotecon">
-  <div class="circle"><a href="../../templates/layout/front.html">1</a></div>
-  <div class="circle"><a href="../../templates/layout/history.html">2</a></div>
-  <div class="circle"><a href="#">3</a></div>
-  <div class="circle"><a href="../../templates/layout/item.html">4</a></div>
-  <div class="circle"><a href="../../templates/layout/community.html">5</a></div>
-</div>
-<div class="button">
-  <a href="#">TOP</a>
-</div>
+    <div class="limotecon">
+      <div class="circle"><a th:href="@{/layout/front}">1</a></div>
+      <div class="circle"><a th:href="@{/layout/history}">2</a></div>
+      <div class="circle"><a href="#">3</a></div>
+      <div class="circle"><a th:href="@{/layout/item}">4</a></div>
+      <div class="circle"><a th:href="@{/notice/list}">5</a></div>
+    </div>
+    <div class="button">
+      <a href="#">TOP</a>
+    </div>
 </body>
 </html>

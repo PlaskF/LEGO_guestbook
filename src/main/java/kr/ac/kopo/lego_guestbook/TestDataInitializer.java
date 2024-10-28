@@ -21,7 +21,7 @@ public class TestDataInitializer implements CommandLineRunner {
         boardRepository.deleteAll();
 
         // 테스트 데이터 생성
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 150; i++) {
             Board board = Board.builder()
                     .title("테스트 제목 " + i)
                     .content("이것은 테스트 내용입니다. 게시물 번호: " + i)

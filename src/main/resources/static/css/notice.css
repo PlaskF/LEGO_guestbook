@@ -1,320 +1,180 @@
-/* 전체적인 페이지 레이아웃 */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9; /* 레고 스타일의 밝은 배경 */
-    margin: 0;
-    padding: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #333; /* 텍스트 기본 색상 */
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-a {
-    text-decoration: none;
-    color: #333;
-}
-
-/* 레고 스타일의 컬러 팔레트 */
+/* 레고 테마 색상 */
 :root {
-    --lego-red: #E3000B;
-    --lego-yellow: #F7D117;
-    --lego-blue: #0057A6;
-    --lego-green: #008C45;
-    --lego-black: #000000;
+    --lego-red: #d62828;
+    --lego-yellow: #f77f00;
+    --lego-blue: #003049;
+    --lego-green: #80b918;
+    --lego-gray: #eae2b7;
 }
 
-/* 블록 레이아웃 스타일 */
-.container {
-    max-width: 1200px;
+/* 전체 레이아웃 */
+/*body {*/
+/*    background-color: var(--lego-gray);*/
+/*    font-family: Arial, sans-serif;*/
+/*}*/
+
+/* 컨테이너 스타일 */
+/*.container_notice {*/
+/*    background-color: white;*/
+/*    border-radius: 15px;*/
+/*    padding: 20px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*    margin-top: 30px;*/
+/*}*/
+
+/* 너비 1920의 컨테이너 */
+.container_notice{
+    width: 1080px;
+    margin: 0 auto;         /* 컨테이너 중앙 정렬 */
+    margin-bottom: 8px;     /* 아래 마진 8px */
+    overflow: hidden;
+}
+/* 로고 설정 */
+.logo{
+    display: block;
     margin: 0 auto;
-    padding: 20px;
 }
-
-.block {
-    background-color: var(--lego-yellow);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    color: var(--lego-black);
+.footlogo{
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    height: auto;
+}
+.h1_style{
+    font-size: 3em;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
     text-align: center;
 }
 
-/* 버튼 스타일 - 레고 블록을 연상시키는 색과 모양 */
-button, .btn {
-    background-color: var(--lego-red);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover, .btn:hover {
-    background-color: var(--lego-blue);
-}
-
-/* 공지사항 테이블 */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th, table td {
-    border: 2px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    font-size: 18px;
-    color: var(--lego-black);
-}
-
-table th {
-    background-color: var(--lego-red);
-    color: white;
-}
-
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+/* 상단 메뉴 구성 */
+.menu{
+    padding: 8px 0 8px 0;
+    float: left;
+    background-color: whitesmoke;
+    border: 10px solid gold;
 }
 
 /* 제목 스타일 */
-.notice-title {
+.h1_notice {
+    color: var(--lego-red);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* li_notice 정렬 */
+li.li_notice {
+    list-style-type: none;
+    float: left;            /* 왼쪽 부착 */
+    padding-left: 16px;     /* 왼쪽 패딩 16px */
+    font-size: large;
+    font-weight: bold;
+}
+
+/* 하이퍼링크 밑줄 제거 */
+li.li_notice > a {
+    display: block;
+    text-decoration: none;
+}
+
+/* 첫 번째 li_notice 요소 스타일 */
+li.li_notice:first-child {
+    padding-left: 10px;
+}
+
+/* 마지막 li_notice 요소 스타일 */
+li.li_notice:last-child {
+    padding-right: 10px;
+}
+
+
+/* 링크 폰트 설정 */
+a.a_link {
+    color: black; /* 링크의 기본 색상 */
+}
+a.a_link.current {
+    color: red; /* 현재 위치한 링크의 색상 */
+}
+
+/* 아래쪽 레이아웃 */
+.footer{
+    height: 80px;
+    width: 1080px;
+    position: relative;     /* 페이지 하단에 위치 */
+    z-index: 1;             /* 이미지의 z-index 값을 낮게 설정 */
+}
+
+/* 테이블 스타일 */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background-color: white;
+}
+
+.table th {
     background-color: var(--lego-blue);
     color: white;
     padding: 10px;
-    font-size: 24px;
-    border-radius: 10px;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-/* 폼 요소 스타일 */
-input[type="text"], textarea {
-    width: 100%;
+.table td {
     padding: 10px;
-    border-radius: 5px;
-    border: 2px solid #ddd;
-    font-size: 16px;
-    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--lego-gray);
 }
 
-input[type="text"]:focus, textarea:focus {
-    outline: none;
-    border-color: var(--lego-blue);
+.table tr:hover {
+    background-color: var(--lego-yellow);
 }
 
-/* 블록 스타일 카드 */
-.card {
+/* 페이징 버튼 */
+.pagination .page-item .page-link {
+    color: var(--lego-blue);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    margin: 0 5px;
+    font-weight: bold;
+    background-color: var(--lego-yellow);
+}
+
+.pagination .page-item.active .page-link {
     background-color: var(--lego-green);
     color: white;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* 상단 네비게이션 메뉴 */
-.navbar {
-    background-color: var(--lego-red);
-    padding: 15px;
-    text-align: center;
-}
-
-.navbar a {
-    color: white;
-    padding: 10px 20px;
-    display: inline-block;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-}
-
-.navbar a:hover {
-    background-color: var(--lego-blue);
-    border-radius: 5px;
-}
-
-/* Footer 스타일 */
-.footer {
-    background-color: var(--lego-blue);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-
-
-/* 공지사항 페이지 전체 레이아웃 */
-.notice-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* 공지사항 목록 테이블 */
-.notice-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.notice-table th, .notice-table td {
-    border: 2px solid #ddd;
-    padding: 12px;
-    text-align: left;
-    font-size: 16px;
-    color: var(--lego-black);
-}
-
-.notice-table th {
-    background-color: var(--lego-blue);
-    color: white;
-    font-size: 18px;
-}
-
-.notice-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.notice-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* 공지사항 제목 */
-.notice-title {
-    background-color: var(--lego-yellow);
-    color: var(--lego-black);
-    padding: 15px;
-    border-radius: 5px;
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* 공지사항 작성, 수정 폼 */
-.notice-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.notice-form label {
-    font-weight: bold;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: var(--lego-black);
-}
-
-.notice-form input[type="text"], .notice-form textarea {
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 2px solid #ddd;
-    font-size: 16px;
-    width: 100%;
-}
-
-.notice-form input[type="text"]:focus, .notice-form textarea:focus {
-    outline: none;
-    border-color: var(--lego-blue);
-}
-
-/* 폼 제출 버튼 스타일 */
-.notice-form button {
+/* 버튼 스타일 */
+.btn-outline-primary {
     background-color: var(--lego-red);
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.notice-form button:hover {
-    background-color: var(--lego-green);
-}
-
-/* 공지사항 상세보기 스타일 */
-.notice-detail {
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.notice-detail h2 {
-    color: var(--lego-black);
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
-.notice-detail p {
-    color: #333;
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.notice-meta {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* 수정 및 삭제 버튼 */
-.notice-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
-.notice-actions a, .notice-actions form button {
-    background-color: var(--lego-blue);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.notice-actions a:hover, .notice-actions form button:hover {
-    background-color: var(--lego-red);
-}
-
-/* 목록으로 돌아가기 버튼 */
-.back-button {
-    display: inline-block;
+.btn-outline-primary:hover {
     background-color: var(--lego-yellow);
-    color: var(--lego-black);
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
+    color: var(--lego-blue);
 }
 
-.back-button:hover {
-    background-color: var(--lego-blue);
-    color: white;
+/* 검색 폼 스타일 */
+.input-group .form-select,
+.input-group .form-control {
+    border-radius: 0;
+    margin-right: 5px;
+}
+
+/* 레고 블록 스타일 요소 */
+.lego-block {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: var(--lego-yellow);
+    /*border-radius: 5px;*/
+    margin: 0 2px;
 }

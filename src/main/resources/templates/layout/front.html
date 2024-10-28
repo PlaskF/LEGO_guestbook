@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>레고</title>
-    <link href="../../static/css/normal.css" rel="stylesheet">
-    <link href="../../static/css/contents.css" rel="stylesheet">
-    <link href="../../static/css/lemotecon.css" rel="stylesheet">
+    <link th:href="@{/css/normal.css}" rel="stylesheet">
+    <link th:href="@{/css/contents.css}" rel="stylesheet">
+    <link th:href="@{/css/lemotecon.css}" rel="stylesheet">
     <style>
         /* 본문 폰트 크기 */
         .font_size{
@@ -47,47 +47,48 @@
 </head>
 <body>
     <div class="container">
-        <img class="logo" src="../../static/img/logo1.jpg">
+        <img class="logo" th:src="@{/img/logo1.jpg}">
     </div>
     <div class="container">
         <ul class="menu" id="linkList">
-            <li><a href="../../templates/layout/front.html">1.개요</a></li>
-            <li><a href="../../templates/layout/history.html">2.역사</a></li>
-            <li><a href="../../templates/layout/play.html">3.놀이 방법</a></li>
-            <li><a href="../../templates/layout/item.html">4.주요 제품군</a></li>
-            <li><a href="../../templates/layout/community.html">5.관련 커뮤니티</a></li>
+            <li><a th:href="@{/layout/front}">1.개요</a></li>
+            <li><a th:href="@{/layout/history}">2.역사</a></li>
+            <li><a th:href="@{/layout/play}">3.놀이 방법</a></li>
+            <li><a th:href="@{/layout/item}">4.주요 제품군</a></li>
+            <li><a th:href="@{/notice/list}">5.커뮤니티</a></li>
         </ul>
     </div>
     <div class="container">
         <h1 class="h1_style">Front</h1>
     </div>
     <div class="container">
-        <div><img class="i1" src="../../static/img/Lego1.jpg"></div>
+        <div><img class="i1" th:src="@{/img/Lego1.jpg}"></div>
         <div id="overview" class="font_size"><br><br>환영합니다! 혹시 레고는 처음이신가요?</div>
-        <div><img class="i2" src="../../static/img/Lego.jpg"></div>
+        <div><img class="i2" th:src="@{/img/Lego.jpg}"></div>
         <div id="overview" class="font_size"><br><br>이 사이트는 당신에게 큰 도움을 줄 것입니다!<br>그 전에 간략히 소개를 드려야겠군요.</div>
     </div>
     <div class="container">
-        <div><img class="i1" src="../../static/img/Lego.png"></div>
+        <div><img class="i1" th:src="@{/img/Lego.png}"></div>
         <div id="overview" class="font_size"><br><br>레고는 블록 모양의 장난감입니다.<br>누구나 쉽게 만들어볼 수 있어 건물, 차량, 동물 등을 만들 수 있어요.</div>
-        <div><img class="i2" src="../../static/img/Lego1.png"></div>
+        <div><img class="i2" th:src="@{/img/Lego1.png}"></div>
         <div id="overview" class="font_size"><br><br>아이들뿐만 아니라 어른들도 흥미와 재미를 느끼며 즐길 수 있어요.<br>또한 레고 대회에 참여해 전세계의 레고 팬들과 경합하며 자신만의 작품을 선보일 수 있어요.</div>
     </div>
     <div class="container">
-        <div><img class="i1" src="../../static/img/lego3.png"></div>
+        <div><img class="i1" th:src="@{/img/lego3.png}"></div>
         <div id="overview" class="font_size"><br><br>전 세계에서 사랑받는 레고는 계속해서 새로운 디자인과 모델을 출시하고 있어서 항상 새로운 재미와 도전을 경험할 수 있답니다.</div>
-        <div><img class="i2" src="../../static/img/lego2.png"></div>
+        <div><img class="i2" th:src="@{/img/lego2.png}"></div>
         <div id="overview" class="font_size"><br><br>그럼 출발해볼까요?</div>
     </div>
+
     <div class="container">
-        <div class="footer"><img class="footlogo" src="../../static/img/logo3.webp"></div>
+        <div class="footer"><img class="footlogo" th:src="@{/img/logo3.webp}"></div>
     </div>
     <div class="limotecon">
         <div class="circle"><a href="#">1</a></div>
-        <div class="circle"><a href="../../templates/layout/history.html">2</a></div>
-        <div class="circle"><a href="../../templates/layout/play.html">3</a></div>
-        <div class="circle"><a href="../../templates/layout/item.html">4</a></div>
-        <div class="circle"><a href="../../templates/layout/community.html">5</a></div>
+        <div class="circle"><a th:href="@{/layout/history}">2</a></div>
+        <div class="circle"><a th:href="@{/layout/play}">3</a></div>
+        <div class="circle"><a th:href="@{/layout/item}">4</a></div>
+        <div class="circle"><a th:href="@{/notice/list}">5</a></div>
     </div>
     <div class="button">
         <a href="#">TOP</a>

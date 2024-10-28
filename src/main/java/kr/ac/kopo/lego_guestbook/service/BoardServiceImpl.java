@@ -6,12 +6,8 @@ import kr.ac.kopo.lego_guestbook.dto.PageResultDTO;
 import kr.ac.kopo.lego_guestbook.entity.Board;
 import kr.ac.kopo.lego_guestbook.repository.BoardRepository;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -26,13 +22,6 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Long register(BoardDTO dto) {
-//        if (dto.getWriter() == null || dto.getWriter().trim().isEmpty()) {
-//            throw new IllegalArgumentException("작성자는 필수 입력 사항입니다.");
-//        }
-//
-//        Board board = dtoToEntity(dto);
-//        boardRepository.save(board);
-//        return board.getBno();
         Board board = dtoToEntity(dto);
         boardRepository.save(board);
 
@@ -46,20 +35,6 @@ public class BoardServiceImpl implements BoardService {
         Page<Object[]> result = boardRepository.searchPage(pageRequestDTO.getType(), pageRequestDTO.getKeyword(), pageRequestDTO.getPageable(Sort.by("bno").descending()));
         return new PageResultDTO<>(result, fn);
     }
-
-//    @Override
-//    public PageResultDTO<BoardDTO, Board> search(PageRequestDTO requestDTO) {
-//        Pageable pageable = requestDTO.getPageable(Sort.by("bno").descending());
-//
-//        String[] types = requestDTO.getType() != null ? requestDTO.getType().split("") : new String[0];
-//        String keyword = requestDTO.getKeyword() != null ? requestDTO.getKeyword() : "";
-//
-//        Page<Board> result = boardRepository.searchAll(types, keyword, pageable);
-//
-//        Function<Board, BoardDTO> fn = (entity -> entityToDto(entity));
-//
-//        return new PageResultDTO<>(result, fn);
-//    }
 
     @Override
     public BoardDTO get(Long bno) {
