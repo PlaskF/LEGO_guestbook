@@ -1,8 +1,6 @@
-package kr.ac.kopo.lego_guestbook;
+package kr.ac.kopo.lego_guestbook.repository;
 
 import kr.ac.kopo.lego_guestbook.entity.Board;
-import kr.ac.kopo.lego_guestbook.repository.BoardRepository;
-import java.time.LocalDateTime;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
