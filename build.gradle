@@ -39,6 +39,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
 
