@@ -13,19 +13,11 @@ import java.time.LocalDateTime;
 @Getter
 public abstract class BaseEntity {
 
-    @Column(updatable = false)
-    private LocalDateTime regDate;
+    @CreatedDate
+    @Column(name = "regDate", updatable = false)
+    private LocalDateTime regDate; // 등록날짜
 
-    private LocalDateTime modDate;
-
-    @PrePersist
-    public void onCreate() {
-        this.regDate = LocalDateTime.now();
-        this.modDate = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void onUpdate() {
-        this.modDate = LocalDateTime.now();
-    }
+    @LastModifiedDate
+    @Column(name = "modDate")
+    private LocalDateTime modDate; // 수정날짜
 }

@@ -88,6 +88,7 @@
                 <th>제목</th>
                 <th>작성자</th>
                 <th>등록일</th>
+                <th>수정일</th>
             </tr>
             </thead>
             <tbody>
@@ -100,6 +101,7 @@
                 </td>
                 <td th:text="${dto.writer}"></td>
                 <td th:text="${#temporals.format(dto.regDate, 'yyyy/MM/dd')}"></td>
+                <td th:text="${#temporals.format(dto.modDate, 'yyyy/MM/dd')}"></td>
             </tr>
             <tr th:if="${result.dtoList.size() == 0}">
                 <td colspan="4" class="text-center">등록된 공지사항이 없습니다.</td>
