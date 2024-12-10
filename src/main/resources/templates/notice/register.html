@@ -15,8 +15,8 @@
     <div class="lego-block" style="background-color: var(--lego-green);"></div>
   </div>
   <h1>공지사항 등록</h1>
-  <form th:action="@{/notice/register}" th:method="post">
-    <div class="form-group">
+  <form th:action="@{/notice/register}" th:method="post" enctype="multipart/form-data">
+    <div class="form-group mt-3">
       <label>제목</label>
       <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요">
     </div>
@@ -27,6 +27,10 @@
     <div class="form-group mt-3">
       <label>작성자</label>
       <input type="text" class="form-control" name="writer" placeholder="작성자를 입력하세요">
+    </div>
+    <div class="form-group mt-3">
+      <label>이미지 첨부</label>
+      <input type="file" class="form-control" name="imageFile">
     </div>
     <button type="submit" class="btn btn-primary mt-3">등록</button>
     <a th:href="@{/notice/list}" class="btn btn-secondary mt-3">목록으로 돌아가기</a>

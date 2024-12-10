@@ -24,7 +24,7 @@ public class ClubUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("♣ ClubUserDetailsService: " + username);
-        Optional<Member> result = memberRepository.findByEmail(username, false);
+        Optional<Member> result = memberRepository.findByEmail(username);
 
         if (result.isEmpty()) {
             throw new UsernameNotFoundException("Check Email or social");
@@ -37,7 +37,6 @@ public class ClubUserDetailsService implements UserDetailsService {
         ClubAuthMemberDTO clubAuthMemberDTO = new ClubAuthMemberDTO(
                 clubMember.getEmail(),
                 clubMember.getPassword(),
-                clubMember.isFromSocial(),
                 clubMember.getRoleSet().stream().map(role -> new SimpleGrantedAuthority("ROLE_"+role.name())).collect(Collectors.toSet())
         );
 

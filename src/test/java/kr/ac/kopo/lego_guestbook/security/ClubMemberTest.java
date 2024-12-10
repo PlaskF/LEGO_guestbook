@@ -30,7 +30,6 @@ public class ClubMemberTest {
                     .email("user"+i+"@kopo.ac.kr")
                     .name("사용자"+i)
                     .password(passwordEncoder.encode("1234"))
-                    .fromSocial(false)
                     .build();
 
             clubMember.addMemberRole(MemberRole.USER);
@@ -49,7 +48,7 @@ public class ClubMemberTest {
 
     @Test
     public void testRead() {
-        Optional<Member> result = repository.findByEmail("user100@kopo.ac.kr", false);
+        Optional<Member> result = repository.findByEmail("user100@kopo.ac.kr");
         Member clubMember = result.get();
         System.out.println("★★★"+clubMember);
     }

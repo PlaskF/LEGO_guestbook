@@ -15,7 +15,7 @@
         <div class="lego-block" style="background-color: var(--lego-green);"></div>
     </div>
     <h1>공지사항 보기</h1>
-    <div class="form-group">
+    <div class="form-group mt-3">
         <label>제목</label>
         <input type="text" class="form-control" th:value="${dto.title}" readonly>
     </div>
@@ -28,11 +28,22 @@
         <input type="text" class="form-control" th:value="${dto.writer}" readonly>
     </div>
     <div class="form-group mt-3">
-        <label>최종 수정일</label>
+        <label>등록일</label>
+        <input type="text" class="form-control" name="regDate" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+    </div>
+    <div class="form-group mt-3">
+        <label>수정일</label>
         <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
     </div>
-    <a th:href="@{/notice/modify(bno=${dto.bno})}" class="btn btn-primary mt-3">수정</a>
-    <a th:href="@{/notice/list}" class="btn btn-secondary mt-3">목록으로 돌아가기</a>
+
+    <div class="form-group mt-3">
+        <a th:href="@{/notice/modify(bno=${dto.bno})}" class="btn btn-primary mt-3">수정</a>
+        <a th:href="@{/notice/list}" class="btn btn-secondary mt-3">목록으로 돌아가기</a>
+        <form th:action="@{/notice/remove}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+            <input type="hidden" name="bno" th:value="${dto.bno}">
+            <button type="submit" class="btn btn-danger">삭제</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

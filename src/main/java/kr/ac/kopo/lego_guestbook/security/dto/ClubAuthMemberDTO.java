@@ -19,7 +19,7 @@ public class ClubAuthMemberDTO extends User {
     private String name;
     private boolean fromSocial;
 
-    public ClubAuthMemberDTO(String username, String password, boolean fromSocial, Collection<? extends GrantedAuthority> authorities) {
+    public ClubAuthMemberDTO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
         this.email = username;
         this.fromSocial = fromSocial;

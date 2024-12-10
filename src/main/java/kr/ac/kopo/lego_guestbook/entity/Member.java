@@ -1,8 +1,6 @@
 package kr.ac.kopo.lego_guestbook.entity;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
@@ -14,12 +12,14 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @ToString
-public class Member {
+public class Member extends BaseEntity{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long mid;
+
     private String email;
     private String password;
     private String name;
-    private boolean fromSocial;  // 소셜계정 유무
 
 
     @ElementCollection
