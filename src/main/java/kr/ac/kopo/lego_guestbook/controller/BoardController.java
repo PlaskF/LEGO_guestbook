@@ -60,24 +60,4 @@ public class BoardController {
         boardService.remove(bno);
         return "redirect:/notice/list";
     }
-
-//    @GetMapping("/front")
-//    public String front() {
-//        return "redirect:/layout/front"; // home.html
-//    }
-//
-//    @GetMapping("/history")
-//    public String history() {
-//        return "layout/history"; // about.html
-//    }
-//
-//    @GetMapping("/play")
-//    public String play() {
-//        return "layout/play"; // contact.html
-//    }
-//
-//    @GetMapping("/item")
-//    public String item() {
-//        return "layout/item"; // home.html
-//    }
 }
