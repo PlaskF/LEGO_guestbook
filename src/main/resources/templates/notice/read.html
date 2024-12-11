@@ -39,25 +39,25 @@
     <h1>게시글 및 리뷰</h1>
     <div class="form-group mt-3">
         <label>제목</label>
-        <input type="text" class="form-control" th:value="${dtoB.title}" readonly>
+        <input type="text" class="form-control" th:value="${dto.title}" readonly>
     </div>
     <div class="form-group mt-3">
         <label>내용</label>
-        <textarea class="form-control" rows="5" th:text="${dtoB.content}" readonly></textarea>
+        <textarea class="form-control" rows="5" th:text="${dto.content}" readonly></textarea>
     </div>
     <div class="form-group mt-3">
         <label>작성자</label>
-        <input type="text" class="form-control" th:value="${dtoB.writer}" readonly>
+        <input type="text" class="form-control" th:value="${dto.writer}" readonly>
     </div>
     <div class="form-group mt-3">
         <label>등록일</label>
-        <input type="text" class="form-control" name="regDate" th:value="${#temporals.format(dtoB.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+        <input type="text" class="form-control" name="regDate" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
     </div>
     <div class="form-group mt-3">
-        <a th:href="@{/notice/modify(bno=${dtoB.bno})}" class="btn btn-primary mt-3">수정</a>
+        <a th:href="@{/notice/modify(bno=${dto.bno})}" class="btn btn-primary mt-3">수정</a>
         <a th:href="@{/notice/list}" class="btn btn-secondary mt-3">목록으로 돌아가기</a>
         <form th:action="@{/notice/remove}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
-            <input type="hidden" name="bno" th:value="${dtoB.bno}">
+            <input type="hidden" name="bno" th:value="${dto.bno}">
             <button type="submit" class="btn btn-danger">삭제</button>
         </form>
     </div>
@@ -107,7 +107,8 @@
     $(document).ready(function(e) {
 
         var grade = 0;
-        var mno = [[${dtoL != null ? dtoL.mno : 0}]];
+        // var mno = [[${dtoL != null ? dtoL.mno : 100}]];
+        var mno = [[${dto.bno}]];
 
         $('.starrr').starrr({
             rating: grade,

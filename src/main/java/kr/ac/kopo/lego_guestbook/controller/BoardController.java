@@ -31,24 +31,19 @@ public class BoardController {
     }
 
     @PostMapping("/register")
-    public String registerPost(BoardDTO dtoB, LEGODTO dtoL,RedirectAttributes redirectAttributes) {
-        Long bno = boardService.register(dtoB);
-        Long mno = legoService.register(dtoL);
+    public String registerPost(BoardDTO dto, RedirectAttributes redirectAttributes) {
+        Long bno = boardService.register(dto);
 
         redirectAttributes.addFlashAttribute("msg", bno);
-        redirectAttributes.addFlashAttribute("mno", mno);
 
         return "redirect:/notice/list";
     }
 
     @GetMapping({"/read", "/modify"})
-    public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, long bno,
-                     @RequestParam(required = false) Long mno, Model model) {
+    public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, long bno, Model model) {
         BoardDTO boardDTO = boardService.get(bno);
-        LEGODTO legodto = (mno != null) ? legoService.getLEGO(mno) : null;
 
-        model.addAttribute("dtoB", boardDTO);
-        model.addAttribute("dtoL", legodto);
+        model.addAttribute("dto", boardDTO);
     }
 
     @PostMapping("/modify")

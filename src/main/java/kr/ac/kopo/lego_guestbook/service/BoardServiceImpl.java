@@ -5,6 +5,8 @@ import kr.ac.kopo.lego_guestbook.dto.PageRequestDTO;
 import kr.ac.kopo.lego_guestbook.dto.PageResultDTO;
 import kr.ac.kopo.lego_guestbook.entity.Board;
 import kr.ac.kopo.lego_guestbook.repository.BoardRepository;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -12,13 +14,11 @@ import java.util.Optional;
 import java.util.function.Function;
 
 @Service
+@Log4j2
+@AllArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
-
-    public BoardServiceImpl(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
 
     @Override
     public Long register(BoardDTO dto) {

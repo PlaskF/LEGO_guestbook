@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "board")
 @ToString
 @Getter
 @Builder
@@ -15,6 +14,9 @@ public class Board extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bno;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private LEGO lego;
 
     @Column(length = 100, nullable = false)
     private String title;
