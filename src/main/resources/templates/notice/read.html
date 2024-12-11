@@ -2,48 +2,280 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>공지사항 보기</title>
+    <title>공지사항 보기 및 리뷰</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/notice.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
+
+<style>
+    .uploadResult {
+        width: 100%;
+        background-color: gray;
+        margin-top: 10px;
+    }
+
+    .uploadResult ul {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+        vertical-align: top;
+        overflow: auto;
+    }
+
+    .uploadResult ul li {
+        list-style: none;
+        padding: 10px;
+        margin-left: 2em;
+    }
+
+    .uploadResult ul li img {
+        width: 100px;
+    }
+</style>
+
 <body>
 <div class="container mt-4">
-    <div class="text-center">
-        <div class="lego-block" style="background-color: var(--lego-red);"></div>
-        <div class="lego-block" style="background-color: var(--lego-yellow);"></div>
-        <div class="lego-block" style="background-color: var(--lego-blue);"></div>
-        <div class="lego-block" style="background-color: var(--lego-green);"></div>
-    </div>
-    <h1>공지사항 보기</h1>
+    <h1>게시글 및 리뷰</h1>
     <div class="form-group mt-3">
         <label>제목</label>
-        <input type="text" class="form-control" th:value="${dto.title}" readonly>
+        <input type="text" class="form-control" th:value="${dtoB.title}" readonly>
     </div>
     <div class="form-group mt-3">
         <label>내용</label>
-        <textarea class="form-control" rows="5" th:text="${dto.content}" readonly></textarea>
+        <textarea class="form-control" rows="5" th:text="${dtoB.content}" readonly></textarea>
     </div>
     <div class="form-group mt-3">
         <label>작성자</label>
-        <input type="text" class="form-control" th:value="${dto.writer}" readonly>
+        <input type="text" class="form-control" th:value="${dtoB.writer}" readonly>
     </div>
     <div class="form-group mt-3">
         <label>등록일</label>
-        <input type="text" class="form-control" name="regDate" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+        <input type="text" class="form-control" name="regDate" th:value="${#temporals.format(dtoB.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
     </div>
     <div class="form-group mt-3">
-        <label>수정일</label>
-        <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
-    </div>
-
-    <div class="form-group mt-3">
-        <a th:href="@{/notice/modify(bno=${dto.bno})}" class="btn btn-primary mt-3">수정</a>
+        <a th:href="@{/notice/modify(bno=${dtoB.bno})}" class="btn btn-primary mt-3">수정</a>
         <a th:href="@{/notice/list}" class="btn btn-secondary mt-3">목록으로 돌아가기</a>
         <form th:action="@{/notice/remove}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
-            <input type="hidden" name="bno" th:value="${dto.bno}">
+            <input type="hidden" name="bno" th:value="${dtoB.bno}">
             <button type="submit" class="btn btn-danger">삭제</button>
         </form>
     </div>
+
+    <!-- 리뷰 모달 버튼 -->
+    <button type="button" class="btn btn-info btn-review mt-4">리뷰 작성</button>
+
+    <div class="list-group reviewList">
+    </div>
+
+    <!-- 모달 창 -->
+    <div class="modal fade reviewModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Review 작성</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Reviewer ID</label>
+                        <input type="text" class="form-control" name="mid">
+                    </div>
+                    <div class="form-group">
+                        <label>Grade <span class="grade"></span></label>
+                        <div class="starrr"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Review Text</label>
+                        <textarea class="form-control" name="text" placeholder="리뷰 내용을 입력하세요"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary reviewSaveBtn">저장</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/starrr.js}"></script>
+<link th:href="@{/css/starrr.css}" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function(e) {
+
+        var grade = 0;
+        var mno = [[${dtoL != null ? dtoL.mno : 0}]];
+
+        $('.starrr').starrr({
+            rating: grade,
+            change: function(e, value){
+                if (value) {
+                    console.log(value);
+                    grade = value;
+                }
+            }
+        });
+
+        var reviewModal = $(".reviewModal");
+        var inputMid = $('input[name="mid"]');
+        var inputText = $('textarea[name="text"]');
+
+        $(".btn-review").click(function () {
+            inputMid.val("");
+            inputText.val("");
+
+            $(".removeBtn ,  .modifyBtn").hide();
+            $(".reviewSaveBtn").show();
+
+            reviewModal.modal('show');
+        });
+
+        $('.reviewSaveBtn').click(function() {
+
+            var data = {mno:mno, grade:grade, text:inputText.val(), mid: inputMid.val() };
+
+            console.log(data);
+
+            $.ajax({
+                url:'/reviews/'+mno,
+                type:"POST",
+                data:JSON.stringify(data),
+                contentType:"application/json; charset=utf-8",
+                dataType:"text",
+                success: function(result){
+
+                    console.log("result: " + result);
+
+                    self.location.reload();
+
+                }
+            })
+            reviewModal.modal('hide');
+
+        });
+
+        function getMovieReviews() {
+
+            function formatTime(str){
+                var date = new Date(str);
+
+                return date.getFullYear() + '/' +
+                    (date.getMonth() + 1) + '/' +
+                    date.getDate() + ' ' +
+                    date.getHours() + ':' +
+                    date.getMinutes();
+            }
+
+            $.getJSON("/reviews/"+ mno +"/all", function(arr){
+                var str ="";
+
+                $.each(arr, function(idx, review){
+
+                    console.log(review);
+
+                    str += '    <div class="card-body" data-reviewnum='+review.reviewnum+' data-mid='+review.mid+'>';
+                    str += '    <h5 class="card-title">'+review.text+' <span>'+ review.grade+'</span></h5>';
+                    str += '    <h6 class="card-subtitle mb-2 text-muted">'+review.name+'</h6>';
+                    str += '    <p class="card-text">'+ formatTime(review.regDate) +'</p>';
+                    str += '    </div>';
+                });
+
+                $(".reviewList").html(str);
+            });
+        }
+
+        getMovieReviews();
+
+        var reviewnum;
+
+        $(".reviewList").on("click", ".card-body", function() {
+
+            $(".reviewSaveBtn").hide();
+            $(".removeBtn , .modifyBtn").show();
+
+
+            var targetReview = $(this);
+
+            reviewnum = targetReview.data("reviewnum");
+            console.log("reviewnum: "+ reviewnum);
+            inputMid.val(targetReview.data("mid"));
+            inputText.val(targetReview.find('.card-title').clone().children().remove().end().text());
+
+            var grade = targetReview.find('.card-title span').html();
+            $(".starrr a:nth-child("+grade+")").trigger('click');
+
+            $('.reviewModal').modal('show');
+        });
+
+        $(".modifyBtn").on("click", function(){
+
+            var data = {reviewnum: reviewnum, mno:mno, grade:grade, text:inputText.val(), mid: inputMid.val() };
+
+            console.log(data);
+
+            $.ajax({
+                url:'/reviews/'+mno +"/"+ reviewnum ,
+                type:"PUT",
+                data:JSON.stringify(data),
+                contentType:"application/json; charset=utf-8",
+                dataType:"text",
+                success: function(result){
+
+                    console.log("result: " + result);
+
+                    self.location.reload();
+
+                }
+            })
+            reviewModal.modal('hide');
+        });
+
+        $(".removeBtn").on("click", function(){
+
+            var data = {reviewnum: reviewnum};
+
+            console.log(data);
+
+            $.ajax({
+                url:'/reviews/'+mno +"/"+ reviewnum ,
+                type:"DELETE",
+                contentType:"application/json; charset=utf-8",
+                dataType:"text",
+                success: function(result){
+
+                    console.log("result: " + result);
+
+                    self.location.reload();
+
+                }
+            })
+            reviewModal.modal('hide');
+        });
+
+        $(".uploadResult li").click(function() {
+
+            var file = $(this).data('file');
+
+            console.log(file);
+
+            $('.imageModal .modal-body').html("<img style='width:100%' src='/display?fileName="+file+"&size=1' >")
+
+            $(".imageModal").modal("show");
+
+        });
+
+        $(".close").on("click", function() {
+            reviewModal.modal('hide');
+        });
+
+        $(".btn btn-secondary close").on("click", function() {
+            reviewModal.modal('hide');
+        });
+
+    });
+</script>
 </body>
 </html>

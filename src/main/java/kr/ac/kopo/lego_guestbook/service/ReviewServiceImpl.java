@@ -21,38 +21,38 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public List<ReviewDTO> getListOfMovie(Long mno){
+    public List<ReviewDTO> getListOfLEGO(Long mno){
 
         LEGO lego = LEGO.builder().mno(mno).build();
 
         List<Review> result = reviewRepository.findByLego(lego);
 
-        return result.stream().map(movieReview -> entityToDto(movieReview)).collect(Collectors.toList());
+        return result.stream().map(legoReview -> entityToDto(legoReview)).collect(Collectors.toList());
     }
 
     @Override
-    public Long register(ReviewDTO movieReviewDTO) {
+    public Long register(ReviewDTO legoReviewDTO) {
 
-        Review movieReview = dtoToEntity(movieReviewDTO);
+        Review legoReview = dtoToEntity(legoReviewDTO);
 
-        reviewRepository.save(movieReview);
+        reviewRepository.save(legoReview);
 
-        return movieReview.getReviewnum();
+        return legoReview.getReviewnum();
     }
 
     @Override
-    public void modify(ReviewDTO movieReviewDTO) {
+    public void modify(ReviewDTO legoReviewDTO) {
 
         Optional<Review> result =
-                reviewRepository.findById(movieReviewDTO.getReviewnum());
+                reviewRepository.findById(legoReviewDTO.getReviewnum());
 
         if(result.isPresent()){
 
-            Review movieReview = result.get();
-            movieReview.changeGrade(movieReviewDTO.getGrade());
-            movieReview.changeText(movieReviewDTO.getText());
+            Review legoReview = result.get();
+            legoReview.changeGrade(legoReviewDTO.getGrade());
+            legoReview.changeText(legoReviewDTO.getText());
 
-            reviewRepository.save(movieReview);
+            reviewRepository.save(legoReview);
         }
 
     }

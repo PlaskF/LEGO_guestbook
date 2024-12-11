@@ -18,7 +18,7 @@ public class ReviewRepositoryTest {
     @Test
     public void insertReview() {
         IntStream.rangeClosed(1, 200).forEach(i -> {
-            // 임의의 영화번호
+            // 임의의 레고번호
             Long mno = (long)(Math.random()*100) + 1;
             // 임의의 회원번호
             Long mid = (long)(Math.random()*100) + 1;

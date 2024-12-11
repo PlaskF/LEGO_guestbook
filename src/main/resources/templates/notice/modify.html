@@ -16,25 +16,25 @@
   </div>
   <h1>공지사항 수정</h1>
   <form th:action="@{/notice/modify}" th:method="post">
-    <input type="hidden" name="bno" th:value="${dto.bno}">
+    <input type="hidden" name="bno" th:value="${dtoB.bno}">
     <div class="form-group">
       <label>제목</label>
-      <input type="text" class="form-control" name="title" th:value="${dto.title}">
+      <input type="text" class="form-control" name="title" th:value="${dtoB.title}">
     </div>
     <div class="form-group mt-3">
       <label>내용</label>
-      <textarea class="form-control" name="content" rows="5" th:text="${dto.content}"></textarea>
+      <textarea class="form-control" name="content" rows="5" th:text="${dtoB.content}"></textarea>
     </div>
     <div class="form-group mt-3">
       <label>작성자</label>
-      <input type="text" class="form-control" name="author" th:value="${dto.writer}" readonly>
+      <input type="text" class="form-control" name="author" th:value="${dtoB.writer}" readonly>
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">수정</button>
     <a th:href="@{/notice/list}" class="btn btn-secondary mt-3">목록으로 돌아가기</a>
   </form>
   <form th:action="@{/notice/remove}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
-    <input type="hidden" name="bno" th:value="${dto.bno}">
+    <input type="hidden" name="bno" th:value="${dtoB.bno}">
     <button type="submit" class="btn btn-danger mt-3">삭제</button>
   </form>
 </div>

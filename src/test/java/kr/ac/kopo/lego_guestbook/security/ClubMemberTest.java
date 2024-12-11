@@ -28,7 +28,7 @@ public class ClubMemberTest {
         IntStream.rangeClosed(1, 100).forEach(i -> {
             Member clubMember = Member.builder()
                     .email("user"+i+"@kopo.ac.kr")
-                    .name("사용자"+i)
+                    .name("reviewer"+i)
                     .password(passwordEncoder.encode("1234"))
                     .build();
 

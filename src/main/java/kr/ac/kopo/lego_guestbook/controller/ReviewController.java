@@ -23,28 +23,28 @@ public class ReviewController {
         log.info("--------------list---------------");
         log.info("MNO: " + mno);
 
-        List<ReviewDTO> reviewDTOList = reviewService.getListOfMovie(mno);
+        List<ReviewDTO> reviewDTOList = reviewService.getListOfLEGO(mno);
 
         return new ResponseEntity<>(reviewDTOList, HttpStatus.OK);
     }
 
     @PostMapping("/{mno}")
-    public ResponseEntity<Long> addReview(@RequestBody ReviewDTO movieReviewDTO){
+    public ResponseEntity<Long> addReview(@RequestBody ReviewDTO legoReviewDTO){
         log.info("--------------add MovieReview---------------");
-        log.info("reviewDTO: " + movieReviewDTO);
+        log.info("reviewDTO: " + legoReviewDTO);
 
-        Long reviewnum = reviewService.register(movieReviewDTO);
+        Long reviewnum = reviewService.register(legoReviewDTO);
 
         return new ResponseEntity<>( reviewnum, HttpStatus.OK);
     }
 
     @PutMapping("/{mno}/{reviewnum}")
     public ResponseEntity<Long> modifyReview(@PathVariable Long reviewnum,
-                                             @RequestBody ReviewDTO movieReviewDTO){
+                                             @RequestBody ReviewDTO legoReviewDTO){
         log.info("---------------modify MovieReview--------------" + reviewnum);
-        log.info("reviewDTO: " + movieReviewDTO);
+        log.info("reviewDTO: " + legoReviewDTO);
 
-        reviewService.modify(movieReviewDTO);
+        reviewService.modify(legoReviewDTO);
 
         return new ResponseEntity<>( reviewnum, HttpStatus.OK);
     }
