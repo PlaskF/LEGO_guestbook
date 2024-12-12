@@ -8,14 +8,15 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = {"lego", "member"})
+@ToString(exclude = {"board", "member"})
 public class Review extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reviewnum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private LEGO lego;
+//    private LEGO lego;
+    private Board board;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;

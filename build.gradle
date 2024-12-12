@@ -45,6 +45,7 @@ dependencies {
     runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
+    implementation group: 'net.coobird', name: 'thumbnailator', version: '0.4.14'
 
     annotationProcessor(
 

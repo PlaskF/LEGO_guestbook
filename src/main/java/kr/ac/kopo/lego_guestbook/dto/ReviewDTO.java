@@ -17,7 +17,7 @@ public class ReviewDTO {
     private Long reviewnum;
 
     //lego mno
-    private Long mno;
+    private Long bno;
 
     //Membmer id
     private Long mid;

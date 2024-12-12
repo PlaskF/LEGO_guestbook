@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "lego")
+@ToString(exclude = "board")
 public class LEGOImage {
 
     @Id
@@ -21,5 +21,6 @@ public class LEGOImage {
     private String path;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private LEGO lego;
+//    private LEGO lego;
+    private Board board;
 }

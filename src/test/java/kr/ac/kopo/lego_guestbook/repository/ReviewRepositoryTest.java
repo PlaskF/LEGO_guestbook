@@ -1,5 +1,6 @@
 package kr.ac.kopo.lego_guestbook.repository;
 
+import kr.ac.kopo.lego_guestbook.entity.Board;
 import kr.ac.kopo.lego_guestbook.entity.Member;
 import kr.ac.kopo.lego_guestbook.entity.LEGO;
 import kr.ac.kopo.lego_guestbook.entity.Review;
@@ -12,6 +13,7 @@ import java.util.stream.IntStream;
 
 @SpringBootTest
 public class ReviewRepositoryTest {
+
     @Autowired
     private ReviewRepository reviewRepository;
 
@@ -27,17 +29,17 @@ public class ReviewRepositoryTest {
                     .mid(mid)
                     .build();
 
-            LEGO lego = LEGO.builder()
-                    .mno(mno)
+            Board board = Board.builder()
+                    .bno(mno)
                     .build();
 
             int grade = (int)(Math.random()*5);
 
             Review review = Review.builder()
                     .member(member)
-                    .lego(lego)
+                    .board(board)
                     .grade(grade)
-                    .text("영화 리뷰 텍스트 " + i)
+                    .text("작품 리뷰 텍스트 " + i)
                     .build();
 
             reviewRepository.save(review);
@@ -46,11 +48,11 @@ public class ReviewRepositoryTest {
 
     @Test
     public void testGetMovieReviews() {
-        LEGO movie = LEGO.builder()
-                .mno(91L)
+        Board board = Board.builder()
+                .bno(91L)
                 .build();
 
-        List<Review> result = reviewRepository.findByLego(movie);
+        List<Review> result = reviewRepository.findByBoard(board);
 
         result.forEach(review -> {
             System.out.println(review.getReviewnum() + "\t");

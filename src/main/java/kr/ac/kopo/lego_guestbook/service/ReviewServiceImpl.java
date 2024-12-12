@@ -1,8 +1,10 @@
 package kr.ac.kopo.lego_guestbook.service;
 
 import kr.ac.kopo.lego_guestbook.dto.ReviewDTO;
+import kr.ac.kopo.lego_guestbook.entity.Board;
 import kr.ac.kopo.lego_guestbook.entity.LEGO;
 import kr.ac.kopo.lego_guestbook.entity.Review;
+import kr.ac.kopo.lego_guestbook.repository.BoardRepository;
 import kr.ac.kopo.lego_guestbook.repository.LEGORepository;
 import kr.ac.kopo.lego_guestbook.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +21,14 @@ import java.util.stream.Collectors;
 public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
-    private final LEGORepository legoRepository;
+    private final BoardRepository boardRepository;
 
     @Override
     public List<ReviewDTO> getListOfLEGO(Long mno){
 
-        LEGO lego = LEGO.builder().mno(mno).build();
+        Board board = Board.builder().bno(mno).build();
 
-        List<Review> result = reviewRepository.findByLego(lego);
+        List<Review> result = reviewRepository.findByBoard(board);
 
         return result.stream().map(legoReview -> entityToDto(legoReview)).collect(Collectors.toList());
     }
@@ -36,12 +38,12 @@ public class ReviewServiceImpl implements ReviewService {
 
 //        Review legoReview = dtoToEntity(legoReviewDTO);
         // LEGO 데이터 확인 및 조회
-        Optional<LEGO> legoOptional = legoRepository.findById(legoReviewDTO.getMno());
+        Optional<Board> legoOptional = boardRepository.findById(legoReviewDTO.getBno());
         if (legoOptional.isEmpty()) {
-            throw new IllegalArgumentException("해당 LEGO 데이터가 존재하지 않습니다. mno=" + legoReviewDTO.getMno());
+            throw new IllegalArgumentException("해당 LEGO 데이터가 존재하지 않습니다. mno=" + legoReviewDTO.getBno());
         }
 
-        LEGO lego = legoOptional.get();
+        Board board = legoOptional.get();
 
         // Review 엔티티 생성 및 LEGO 매핑
         Review legoReview = dtoToEntity(legoReviewDTO);

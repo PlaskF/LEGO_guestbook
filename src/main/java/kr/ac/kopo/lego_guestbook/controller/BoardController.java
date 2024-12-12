@@ -1,16 +1,15 @@
 package kr.ac.kopo.lego_guestbook.controller;
 
 import kr.ac.kopo.lego_guestbook.dto.BoardDTO;
-import kr.ac.kopo.lego_guestbook.dto.LEGODTO;
 import kr.ac.kopo.lego_guestbook.dto.PageRequestDTO;
 import kr.ac.kopo.lego_guestbook.service.BoardService;
-import kr.ac.kopo.lego_guestbook.service.LEGOService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping("/notice")
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BoardController {
 
     private final BoardService boardService;
-    private final LEGOService legoService;
 
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model) {
@@ -61,6 +59,7 @@ public class BoardController {
 
     @PostMapping("/remove")
     public String remove(@RequestParam Long bno) {
+
         boardService.remove(bno);
         return "redirect:/notice/list";
     }

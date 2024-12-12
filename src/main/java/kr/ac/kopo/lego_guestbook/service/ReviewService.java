@@ -1,6 +1,7 @@
 package kr.ac.kopo.lego_guestbook.service;
 
 import kr.ac.kopo.lego_guestbook.dto.ReviewDTO;
+import kr.ac.kopo.lego_guestbook.entity.Board;
 import kr.ac.kopo.lego_guestbook.entity.Member;
 import kr.ac.kopo.lego_guestbook.entity.LEGO;
 import kr.ac.kopo.lego_guestbook.entity.Review;
@@ -9,10 +10,10 @@ import java.util.List;
 
 public interface ReviewService {
 
-    //영화의 모든 영화리뷰를 가져온다.
+    //제품의 모든 리뷰를 가져온다.
     List<ReviewDTO> getListOfLEGO(Long mno);
 
-    //영화 리뷰를 추가
+    //제품 리뷰를 추가
     Long register(ReviewDTO legoReviewDTO);
 
     //특정한 영화리뷰 수정
@@ -25,7 +26,7 @@ public interface ReviewService {
 
         Review legoReview = Review.builder()
                 .reviewnum(legoReviewDTO.getReviewnum())
-                .lego(LEGO.builder().mno(legoReviewDTO.getMno()).build())
+                .board(Board.builder().bno(legoReviewDTO.getBno()).build())
                 .member(Member.builder().mid(legoReviewDTO.getMid()).build())
                 .grade(legoReviewDTO.getGrade())
                 .text(legoReviewDTO.getText())
@@ -38,7 +39,7 @@ public interface ReviewService {
 
         ReviewDTO legoReviewDTO = ReviewDTO.builder()
                 .reviewnum(legoReview.getReviewnum())
-                .mno(legoReview.getLego().getMno())
+                .bno(legoReview.getBoard().getBno())
                 .mid(legoReview.getMember().getMid())
                 .name(legoReview.getMember().getName())
                 .email(legoReview.getMember().getEmail())
