@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @RestController
@@ -40,14 +41,14 @@ public class UploadController {
 
         for (MultipartFile uploadFile: uploadFiles) {
 
-            if(uploadFile.getContentType().startsWith("image") == false) {
+            if(!Objects.requireNonNull(uploadFile.getContentType()).startsWith("image")) {
                 log.warn("this file is not image type");
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
 
             //실제 파일 이름 IE나 Edge는 전체 경로가 들어오므로
             String originalName = uploadFile.getOriginalFilename();
-            String fileName = originalName.substring(originalName.lastIndexOf("\\") + 1);
+            String fileName = Objects.requireNonNull(originalName).substring(originalName.lastIndexOf("\\") + 1);
 
             log.info("fileName: " + fileName);
             //날짜 폴더 생성
@@ -91,7 +92,7 @@ public class UploadController {
         // make folder --------
         File uploadPathFolder = new File(uploadPath, folderPath);
 
-        if (uploadPathFolder.exists() == false) {
+        if (!uploadPathFolder.exists()) {
             uploadPathFolder.mkdirs();
         }
         return folderPath;

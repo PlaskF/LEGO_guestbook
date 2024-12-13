@@ -93,7 +93,6 @@
             </tr>
             </thead>
             <tbody>
-
             <tr th:each="dto : ${result.dtoList}">
                 <td th:text="${dto.bno}"></td>
                 <td><img th:if="${dto.imageDTOList.size() > 0 && dto.imageDTOList[0].path != null }"
@@ -129,7 +128,12 @@
             </li>
         </ul>
         <!-- 새 글 작성 버튼 -->
-        <a th:href="@{/notice/register}" class="btn btn-outline-primary mt-3">게시물 등록</a>
+        <div th:if="${#authentication.principal != null}">
+            <a th:href="@{/notice/register}" class="btn btn-outline-primary mt-3">게시물 등록</a>
+        </div>
+        <div th:if="${#authentication.principal == null}">
+            <p class="text-danger">게시물 등록은 로그인 사용자만 가능합니다.</p>
+        </div>
     </div>
 
     <div class="container_notice">

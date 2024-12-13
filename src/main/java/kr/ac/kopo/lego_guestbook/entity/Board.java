@@ -15,9 +15,6 @@ public class Board extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bno;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private LEGO lego;
-
     @Column(length = 100, nullable = false)
     private String title;
 
@@ -37,11 +34,4 @@ public class Board extends BaseEntity {
         this.content = content;
     }
 
-//    public String getImagePath() {
-//        return imagePath;
-//    }
-//
-//    public void setImagePath(String imagePath) {
-//        this.imagePath = (imagePath != null) ? imagePath : "";
-//    }
 }

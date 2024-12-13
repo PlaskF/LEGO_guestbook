@@ -18,27 +18,31 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
-    @GetMapping("/{mno}/all")
-    public ResponseEntity<List<ReviewDTO>> getList(@PathVariable("mno") Long mno){
+    @GetMapping("/{bno}/all")
+    public ResponseEntity<List<ReviewDTO>> getList(@PathVariable("bno") Long bno){
         log.info("--------------list---------------");
-        log.info("MNO: " + mno);
+        log.info("BNO: " + bno);
 
-        List<ReviewDTO> reviewDTOList = reviewService.getListOfLEGO(mno);
+        List<ReviewDTO> reviewDTOList = reviewService.getListOfLEGO(bno);
 
         return new ResponseEntity<>(reviewDTOList, HttpStatus.OK);
     }
 
-    @PostMapping("/{mno}")
+    @PostMapping("/{bno}")
     public ResponseEntity<Long> addReview(@RequestBody ReviewDTO legoReviewDTO){
         log.info("--------------add MovieReview---------------");
         log.info("reviewDTO: " + legoReviewDTO);
+
+        if (legoReviewDTO.getBno() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();  // Bad Request 반환
+        }
 
         Long reviewnum = reviewService.register(legoReviewDTO);
 
         return new ResponseEntity<>( reviewnum, HttpStatus.OK);
     }
 
-    @PutMapping("/{mno}/{reviewnum}")
+    @PutMapping("/{bno}/{reviewnum}")
     public ResponseEntity<Long> modifyReview(@PathVariable Long reviewnum,
                                              @RequestBody ReviewDTO legoReviewDTO){
         log.info("---------------modify MovieReview--------------" + reviewnum);
@@ -49,7 +53,7 @@ public class ReviewController {
         return new ResponseEntity<>( reviewnum, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{mno}/{reviewnum}")
+    @DeleteMapping("/{bno}/{reviewnum}")
     public ResponseEntity<Long> removeReview( @PathVariable Long reviewnum){
         log.info("---------------modify removeReview--------------");
         log.info("reviewnum: " + reviewnum);

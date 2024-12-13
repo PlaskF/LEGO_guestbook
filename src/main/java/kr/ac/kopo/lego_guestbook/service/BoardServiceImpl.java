@@ -28,21 +28,12 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
     private final LEGOImageRepository imageRepository;
 
-//    @Override
-//    public Long register(BoardDTO dto) {
-//        Board board = dtoToEntity(dto);
-//        boardRepository.save(board);
-//
-//        return board.getBno();
-//    }
-
     @Transactional
     @Override
     public Long register(BoardDTO boardDTO) {
 
         Map<String, Object> entityMap = dtoToEntity(boardDTO);
         Board board = (Board) entityMap.get("board");
-//        List<LEGOImage> legoImageList = (List<LEGOImage>) entityMap.get("imgList");
         List<LEGOImage> legoImageList = (List<LEGOImage>) entityMap.get("imgList");
         if (legoImageList == null) {
             legoImageList = new ArrayList<>();
@@ -57,14 +48,6 @@ public class BoardServiceImpl implements BoardService {
         return board.getBno();
     }
 
-
-//    @Override
-//    public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
-//        Function<Object[], BoardDTO> fn = (en -> entitiesToDTO((Board) en[0], Collections.singletonList((LEGOImage) en[1])));
-//        Page<Object[]> result = boardRepository.searchPage(pageRequestDTO.getType(), pageRequestDTO.getKeyword(), pageRequestDTO.getPageable(Sort.by("bno").descending()));
-//        return new PageResultDTO<>(result, fn);
-//    }
-
     @Override
     public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO requestDTO) {
 
@@ -76,12 +59,6 @@ public class BoardServiceImpl implements BoardService {
         result.getContent().forEach(arr -> {
             log.info(Arrays.toString(arr));
         });
-
-
-//        Function<Object[], BoardDTO> fn = (arr -> entitiesToDTO(
-//                (Board)arr[0] ,
-//                (List<LEGOImage>)(Arrays.asList((LEGOImage)arr[1])))
-//        );
 
         // 수정된 데이터 매핑 함수
         Function<Object[], BoardDTO> fn = (arr -> {
@@ -100,14 +77,6 @@ public class BoardServiceImpl implements BoardService {
 
         return new PageResultDTO<>(result, fn);
     }
-
-//    @Override
-//    public BoardDTO get(Long bno) {
-//        Optional<Board> result = boardRepository.findById(bno);
-//        List<LEGOImage> movieImageList = new ArrayList<>();
-//
-//        return result.isPresent() ? entitiesToDTO(result.get(), movieImageList) : null;
-//    }
 
     @Override
     public BoardDTO get(Long bno) {
@@ -138,26 +107,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public void remove(Long bno) {
+        // 1. 외래 키로 연결된 자식 데이터를 먼저 삭제
+        imageRepository.deleteAllByBoard_Bno(bno);
+
+        // 2. 부모 데이터 삭제
         boardRepository.deleteById(bno);
     }
 
-//    private BoardDTO entityToDto(Board board) {
-//        return BoardDTO.builder()
-//                .bno(board.getBno())
-//                .title(board.getTitle())
-//                .content(board.getContent())
-//                .writer(board.getWriter())
-//                .regDate(board.getRegDate())
-//                .modDate(board.getModDate())
-//                .build();
-//    }
-//
-//    private Board dtoToEntity(BoardDTO dto) {
-//        return Board.builder()
-//                .title(dto.getTitle())
-//                .content(dto.getContent())
-//                .writer(dto.getWriter())
-//                .build();
-//    }
 }

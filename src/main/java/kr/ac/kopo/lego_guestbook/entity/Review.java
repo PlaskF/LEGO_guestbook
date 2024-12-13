@@ -15,7 +15,6 @@ public class Review extends BaseEntity {
     private Long reviewnum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-//    private LEGO lego;
     private Board board;
 
     @ManyToOne(fetch = FetchType.LAZY)

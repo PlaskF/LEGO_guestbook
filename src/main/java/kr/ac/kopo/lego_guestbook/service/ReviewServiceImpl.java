@@ -1,11 +1,10 @@
 package kr.ac.kopo.lego_guestbook.service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import kr.ac.kopo.lego_guestbook.dto.ReviewDTO;
 import kr.ac.kopo.lego_guestbook.entity.Board;
-import kr.ac.kopo.lego_guestbook.entity.LEGO;
 import kr.ac.kopo.lego_guestbook.entity.Review;
-import kr.ac.kopo.lego_guestbook.repository.BoardRepository;
-import kr.ac.kopo.lego_guestbook.repository.LEGORepository;
 import kr.ac.kopo.lego_guestbook.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,33 +20,29 @@ import java.util.stream.Collectors;
 public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
-    private final BoardRepository boardRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
-    public List<ReviewDTO> getListOfLEGO(Long mno){
+    public List<ReviewDTO> getListOfLEGO(Long bno){
 
-        Board board = Board.builder().bno(mno).build();
+        Board board = Board.builder().bno(bno).build();
 
         List<Review> result = reviewRepository.findByBoard(board);
 
-        return result.stream().map(legoReview -> entityToDto(legoReview)).collect(Collectors.toList());
+        return result.stream().map(movieReview -> entityToDto(movieReview)).collect(Collectors.toList());
     }
 
     @Override
-    public Long register(ReviewDTO legoReviewDTO) {
-
-//        Review legoReview = dtoToEntity(legoReviewDTO);
-        // LEGO 데이터 확인 및 조회
-        Optional<Board> legoOptional = boardRepository.findById(legoReviewDTO.getBno());
-        if (legoOptional.isEmpty()) {
-            throw new IllegalArgumentException("해당 LEGO 데이터가 존재하지 않습니다. mno=" + legoReviewDTO.getBno());
+    public Long register(ReviewDTO boardReviewDTO) {
+        // bno 필드가 null인지 확인
+        Long bno = boardReviewDTO.getBno();
+        if (bno == null) {
+            throw new IllegalArgumentException("Board ID (bno)는 필수 값입니다.");
         }
 
-        Board board = legoOptional.get();
-
-        // Review 엔티티 생성 및 LEGO 매핑
-        Review legoReview = dtoToEntity(legoReviewDTO);
-//        legoReview.setLego(lego); // LEGO 객체를 Review에 매핑
+        Review legoReview = dtoToEntity(boardReviewDTO);
 
         reviewRepository.save(legoReview);
 

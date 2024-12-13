@@ -63,21 +63,6 @@ public interface BoardService {
 
         List<LEGOImageDTO> imageDTOList = boardDTO.getImageDTOList();
 
-//        if(imageDTOList != null && !imageDTOList.isEmpty()) { //MovieImageDTO 처리
-//
-//            List<LEGOImage> legoImageList = imageDTOList.stream().map(legoImageDTO ->{
-//
-//                LEGOImage legoImage = LEGOImage.builder()
-//                        .path(legoImageDTO.getPath())
-//                        .imgName(legoImageDTO.getImgName())
-//                        .uuid(legoImageDTO.getUuid())
-//                        .board(board)
-//                        .build();
-//                return legoImage;
-//            }).collect(Collectors.toList());
-//
-//            entityMap.put("imgList", legoImageList);
-//        }
         if (imageDTOList != null && !imageDTOList.isEmpty()) {
             List<LEGOImage> imageList = new ArrayList<>();
 

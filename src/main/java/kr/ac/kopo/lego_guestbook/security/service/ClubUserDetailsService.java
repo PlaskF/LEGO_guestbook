@@ -27,17 +27,21 @@ public class ClubUserDetailsService implements UserDetailsService {
         Optional<Member> result = memberRepository.findByEmail(username);
 
         if (result.isEmpty()) {
-            throw new UsernameNotFoundException("Check Email or social");
+            throw new UsernameNotFoundException("Check Email");
         }
 
         Member clubMember = result.get();
 
         log.info(clubMember);
 
+        // 사용자 권한 설정
         ClubAuthMemberDTO clubAuthMemberDTO = new ClubAuthMemberDTO(
                 clubMember.getEmail(),
                 clubMember.getPassword(),
-                clubMember.getRoleSet().stream().map(role -> new SimpleGrantedAuthority("ROLE_"+role.name())).collect(Collectors.toSet())
+                clubMember.getRoleSet()
+                        .stream()
+                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name())) // ROLE_ 접두어 추가
+                        .collect(Collectors.toSet())
         );
 
         clubAuthMemberDTO.setName(clubMember.getName());

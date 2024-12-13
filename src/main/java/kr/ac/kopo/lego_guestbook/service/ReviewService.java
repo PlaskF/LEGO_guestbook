@@ -3,7 +3,6 @@ package kr.ac.kopo.lego_guestbook.service;
 import kr.ac.kopo.lego_guestbook.dto.ReviewDTO;
 import kr.ac.kopo.lego_guestbook.entity.Board;
 import kr.ac.kopo.lego_guestbook.entity.Member;
-import kr.ac.kopo.lego_guestbook.entity.LEGO;
 import kr.ac.kopo.lego_guestbook.entity.Review;
 
 import java.util.List;
@@ -24,20 +23,22 @@ public interface ReviewService {
 
     default Review dtoToEntity(ReviewDTO legoReviewDTO){
 
-        Review legoReview = Review.builder()
+        if (legoReviewDTO.getBno() == null) {
+            throw new IllegalArgumentException("Board ID (bno)는 null일 수 없습니다.");
+        }
+
+        return Review.builder()
                 .reviewnum(legoReviewDTO.getReviewnum())
                 .board(Board.builder().bno(legoReviewDTO.getBno()).build())
                 .member(Member.builder().mid(legoReviewDTO.getMid()).build())
                 .grade(legoReviewDTO.getGrade())
                 .text(legoReviewDTO.getText())
                 .build();
-
-        return legoReview;
     }
 
     default ReviewDTO entityToDto(Review legoReview){
 
-        ReviewDTO legoReviewDTO = ReviewDTO.builder()
+        return ReviewDTO.builder()
                 .reviewnum(legoReview.getReviewnum())
                 .bno(legoReview.getBoard().getBno())
                 .mid(legoReview.getMember().getMid())
@@ -48,7 +49,5 @@ public interface ReviewService {
                 .regDate(legoReview.getRegDate())
                 .modDate(legoReview.getModDate())
                 .build();
-
-        return legoReviewDTO;
     }
 }
